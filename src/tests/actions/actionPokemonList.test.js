@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 
 import { actionGetPokemonListStarted, GET_POKEMON_LIST_STARTED, actionGetPokemonListFinished, GET_POKEMON_LIST_FINISHED, actionGetPokemonList } from "../../actions/actionPokemonList";
 import { DEFAULT_POKEMONS_STATE } from '../../reducers/pokemonReducer';
+import { API_GATEWAY, API_GET_POKEMON, API_LIST_POKEMON } from '../../constants/api';
 
 /*
 beforeEach(() => {
@@ -77,6 +78,8 @@ test('Should correctly request pokemon list and fire failure actionGetPokemonLis
 
         moxios.wait(() => {
             const request = moxios.requests.mostRecent();
+
+
             request.respondWith({
                 status: 404,
                 response
@@ -85,10 +88,14 @@ test('Should correctly request pokemon list and fire failure actionGetPokemonLis
 
                 let finishAction = actionGetPokemonListFinished(1, response, false);
                 finishAction.payload = expect.anything();
+
+
                 expect(actions).toEqual([
                     actionGetPokemonListStarted(),
                     finishAction
                 ]);
+
+                expect(request.url).toEqual(API_GATEWAY + API_LIST_POKEMON + '?limit=20');
 
                 done();
             })

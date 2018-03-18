@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_GATEWAY, API_GET_POKEMON, PAGINATION } from '../constants/api';
+import { API_GATEWAY, API_GET_POKEMON, PAGINATION, API_LIST_POKEMON } from '../constants/api';
 
 export const GET_POKEMON_LIST_STARTED = 'gd:GET_POKEMON_LIST_STARTED';
 export const actionGetPokemonListStarted = () => ({
@@ -14,7 +14,7 @@ export const actionGetPokemonList = () => {
         const { pokemons } = getState();
         const { page } = pokemons;
 
-        return axios.get(API_GATEWAY + API_GET_POKEMON, { params: PAGINATION(page) })
+        return axios.get(API_GATEWAY + API_LIST_POKEMON, { params: PAGINATION(page) })
             .then(response => {
                 dispatch(actionGetPokemonListFinished(page + 1, response.data, true));
             })

@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import dataReducer from '../reducers/dataReducer';
+import pokemonReducer from '../reducers/pokemonReducer';
 import thunk from 'redux-thunk';
 
 
@@ -9,7 +9,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
     const store = createStore(
         combineReducers({
-            data: dataReducer
+            pokemons: pokemonReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     );

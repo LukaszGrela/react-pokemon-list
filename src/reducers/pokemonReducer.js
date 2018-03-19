@@ -19,8 +19,16 @@ const pokemonReducer = (state = DEFAULT_POKEMONS_STATE, action) => {
             let newState = { ...state, loading: false, page: action.page };
             if (success) {
                 newState.noMore = action.payload.next === null;
-                newState.list = [...state.list, ...action.payload.results];
+                newState.list = [...state.list, ...action.payload.results.map((item) => {
+                    const reg = /\/(\d+?)\/$/g;
+                    const result = reg.exec(item.url)[1];
+                    const id = parseInt(result, 10);
+                        return {...item, id};
+                    }
+                )];
                 newState.count = action.payload.count;
+
+
             } else {
                 newState.error = action.payload;
             }

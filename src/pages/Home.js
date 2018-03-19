@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { actionGetPokemonList } from '../actions/actionPokemonList';
+import PokemonList from '../components/PokemonList';
+
 
 class Home extends React.Component {
     render = () => {
         return (
             <article>
-                <h1>Pokemon List</h1>
-                <ul className='list'>
-                {
-                    this.props.list.map(({url, name}, index) => <li key={index}>{name}</li>)
-                }
-                </ul>
+                <PokemonList list={this.props.list} />
+                <button onClick={() => {
+                    this.props.pullMoreItems();
+                }}>Pull More Items</button>
             </article>
         );
     }
@@ -19,4 +20,7 @@ class Home extends React.Component {
 const mapStateToProps = (state, props) => ({
     list: state.pokemons.list
 });
-export default connect(mapStateToProps)(Home);
+const mapDispatchTopProps = (dispatch) => ({
+    pullMoreItems: () => dispatch(actionGetPokemonList())
+})
+export default connect(mapStateToProps, mapDispatchTopProps)(Home);

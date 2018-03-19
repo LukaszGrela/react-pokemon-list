@@ -1,3 +1,5 @@
+@import './_variables.scss';
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +11,7 @@ html {
 header {
     height: 7rem;
     color: #fff;
-    background-color: #e82323;
+    background-color: $pokemon-red;
     text-align: center;
     font-size: 4.4rem;
     font-weight: bold;

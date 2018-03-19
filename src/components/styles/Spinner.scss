@@ -1,0 +1,46 @@
+@import '../../styles/_variables.scss';
+
+$spinnerSize: 40;
+$spinnerStrokeWidth: 2px;
+
+@keyframes spinner {
+    0% {
+        stroke-dashoffset: (0.66 * $spinnerSize);
+        transform: rotate(0deg);
+    } 50% {
+        stroke-dashoffset: (3.14 * $spinnerSize);
+        transform: rotate(720deg);
+    } 100% {
+        stroke-dashoffset: (0.66 * $spinnerSize);
+        transform: rotate(1080deg);
+    }
+}
+
+.loading-spinner {
+    margin: 1rem 0;
+
+    svg.spinner {
+        width: $spinnerSize + px;
+        height: $spinnerSize + px;
+        x: 0px;
+        y: 0px;
+        viewBox: 0 0 $spinnerSize $spinnerSize;
+
+        circle {
+            fill: transparent;
+            stroke-linecap: round;
+        }
+        circle#bg {
+            stroke-width: $spinnerStrokeWidth - 1;
+            stroke: $secondary;
+        }
+        circle#fg {
+            stroke-width: $spinnerStrokeWidth;
+            stroke: $pokemon-red;
+            stroke-dasharray: (3.14 * $spinnerSize);
+
+            transform-origin: (0.5px * $spinnerSize) (0.5px * $spinnerSize) 0;
+            animation: spinner 4s linear infinite;
+        }
+    }
+}

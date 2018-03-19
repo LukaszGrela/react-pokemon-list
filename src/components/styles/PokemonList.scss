@@ -1,3 +1,4 @@
+@import '../../styles/_mixins.scss';
 
 .pokemon-list {
 
@@ -9,6 +10,8 @@
         margin: 1rem;
         border-radius: 0.8rem;
         display: inline-block;
+
+        @include shadow-1;
 
         img {
             width: 9.6rem;

@@ -2,6 +2,9 @@
     "transform": {
         "^.+\\.jsx?$": "babel-jest"
     },
+    "moduleNameMapper": {
+      "\\.(s?css$)$": "identity-obj-proxy"
+    },
     "setupFiles": [
         "raf/polyfill",
         "<rootDir>/src/tests/setupTests.js"

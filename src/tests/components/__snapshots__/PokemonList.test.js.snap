@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render component correctly 1`] = `
+<ul
+  className="pokemon-list"
+>
+  <li
+    className="pokemon-item"
+    key="0"
+  >
+    <img
+      className="pokemon-image"
+      onError={[Function]}
+      src="./static/pokemon/21.png"
+    />
+    <div
+      className="pokemon-name"
+    >
+      spearow
+    </div>
+  </li>
+</ul>
+`;

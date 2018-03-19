@@ -27,7 +27,7 @@ test('should change loading to false for GET_POKEMON_LIST_FINISHED action', () =
     const payload = {
         ...POKEMON_LIST,
         results: [],
-        count:0
+        count: 0
     };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(1, payload, true));
 
@@ -47,7 +47,7 @@ test('should change page for GET_POKEMON_LIST_FINISHED action', () => {
     const payload = {
         ...POKEMON_LIST,
         results: [],
-        count:0
+        count: 0
     };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(2, payload, true));
 
@@ -67,7 +67,7 @@ test('should change noMore to true for GET_POKEMON_LIST_FINISHED action', () => 
     const payload = {
         ...POKEMON_LIST,
         results: [],
-        count:0,
+        count: 0,
         next: null
     };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(1, payload, true));
@@ -85,13 +85,20 @@ test('should change count for GET_POKEMON_LIST_FINISHED action', () => {
         ...DEFAULT_POKEMONS_STATE
     };
     const payload = {
-        ...POKEMON_LIST
+        ...POKEMON_LIST,
+        results: [
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/21\/", "name": "spearow" },
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/22\/", "name": "fearow" }
+        ]
     };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(1, payload, true));
 
     const newState = {
         ...DEFAULT_POKEMONS_STATE,
-        list:POKEMON_LIST.results,
+        list: [
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/21\/", "name": "spearow", id:21 },
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/22\/", "name": "fearow", id:22 }
+        ],
         count: POKEMON_LIST.count
     };
 
@@ -102,16 +109,23 @@ test('should change count for GET_POKEMON_LIST_FINISHED action', () => {
 test('should change list for GET_POKEMON_LIST_FINISHED action', () => {
     const prevState = {
         ...DEFAULT_POKEMONS_STATE,
-        list:["one"]
+        list: ["one"]
     };
     const payload = {
-        ...POKEMON_LIST
+        ...POKEMON_LIST,
+        results: [
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/21\/", "name": "spearow" },
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/22\/", "name": "fearow" }
+        ]
     };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(1, payload, true));
 
     const newState = {
         ...DEFAULT_POKEMONS_STATE,
-        list:[...prevState.list, ...POKEMON_LIST.results],
+        list: [...prevState.list, ...[
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/21\/", "name": "spearow", id:21 },
+            { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon\/22\/", "name": "fearow", id:22 }
+        ]],
         count: POKEMON_LIST.count
     };
 

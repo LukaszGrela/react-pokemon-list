@@ -1,6 +1,6 @@
 {
   "name": "react-pokemon-list",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "React app for REST example with Pokemon API",
   "main": "index.js",
   "repository": "https://github.com/LukaszGrela/react-pokemon-list",
@@ -44,6 +44,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.3.0",
     "moxios": "^0.4.0",
     "raf": "^3.4.0",

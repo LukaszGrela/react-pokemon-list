@@ -1,4 +1,6 @@
+
 .pokemon-list {
+
     .pokemon-item {
         list-style: none;
         width: 104px;
@@ -6,11 +8,13 @@
         text-align: center;
         margin: 10px;
         display: inline-block;
+
         img {
             width: 96px;
             height: 96px;
             margin: 4px;
         }
+
         .pokemon-name {
             text-transform: capitalize;
             font-weight: 700;
@@ -18,5 +22,6 @@
             margin: 4px 0;
             width: 104px;
         }
+        
     }
 }

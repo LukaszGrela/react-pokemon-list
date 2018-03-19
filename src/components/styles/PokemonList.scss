@@ -1,22 +1,22 @@
-.list img {
-    width: 96px;
-    height: 96px;
-    margin: 4px;
-}
-
-.list li {
-    list-style: none;
-    width: 104px;
-    background-color: #f7f7f7;
-    text-align: center;
-    margin: 10px;
-    display: inline-block;
-}
-
-.list li .name {
-    text-transform: capitalize;
-    font-weight: 700;
-    font-family: sans-serif;
-    margin: 4px 0;
-    width: 104px;
+.pokemon-list {
+    .pokemon-item {
+        list-style: none;
+        width: 104px;
+        background-color: #f7f7f7;
+        text-align: center;
+        margin: 10px;
+        display: inline-block;
+        img {
+            width: 96px;
+            height: 96px;
+            margin: 4px;
+        }
+        .pokemon-name {
+            text-transform: capitalize;
+            font-weight: 700;
+            font-family: sans-serif;
+            margin: 4px 0;
+            width: 104px;
+        }
+    }
 }

@@ -7,8 +7,45 @@ import Spinner from '../components/Spinner';
 import './styles/Home.scss';
 
 class Home extends React.Component {
+
+    handleScroll = () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+            // reached the bottom
+            this.detachScrollListener();//stop listening
+            this.props.pullMoreItems();
+        }
+    }
+
+    detachScrollListener = () => {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+    attachScrollListener = () => {
+        this.detachScrollListener();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (this.props.list.length > 0 //dont for initial load
+            && this.props.loading === true //is loading
+            && this.props.loading !== prevProps.loading //was just switched to loading
+        ) {
+            document.getElementsByClassName('loading-spinner')[0].scrollIntoView();
+        }
+        if (this.props.noMore !== prevProps.noMore && this.props.noMore) {
+            this.detachScrollListener();//no more pulling
+        }
+        if (!this.props.noMore && this.props.loading !== prevProps.loading && this.props.loading === false) {
+            this.attachScrollListener();//reattach listener
+        }
+    }
+    componentWillMount = () => {
+        this.attachScrollListener();
+    }
+    componentWillUnmount = () => {
+        this.detachScrollListener();
+    }
     render = () => {
-        const {list, loading} = this.props;
+        const { list, loading } = this.props;
         return (
             <article className='home'>
                 <PokemonList list={list} />
@@ -19,7 +56,7 @@ class Home extends React.Component {
 };
 
 const mapStateToProps = (state, props) => ({
-    loading:state.pokemons.loading,
+    loading: state.pokemons.loading,
     error: state.pokemons.error,
     noMore: state.pokemons.noMore,
     list: state.pokemons.list

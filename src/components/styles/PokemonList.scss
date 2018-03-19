@@ -3,25 +3,26 @@
 
     .pokemon-item {
         list-style: none;
-        width: 104px;
+        width: 10.4rem;
         background-color: #f7f7f7;
         text-align: center;
-        margin: 10px;
+        margin: 1rem;
+        border-radius: 0.8rem;
         display: inline-block;
 
         img {
-            width: 96px;
-            height: 96px;
-            margin: 4px;
+            width: 9.6rem;
+            height: 9.6rem;
+            margin: 0.4rem;
         }
 
         .pokemon-name {
             text-transform: capitalize;
             font-weight: 700;
             font-family: sans-serif;
-            margin: 4px 0;
-            width: 104px;
+            margin: 0.4rem 0;
+            width: 10.4rem;
         }
-        
+
     }
 }

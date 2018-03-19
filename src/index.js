@@ -8,8 +8,9 @@ import { actionGetPokemonList } from './actions/actionPokemonList';
 
 const store = configureStore();
 
-// get first list of pokemons before rendering the app
+import './styles/index.scss';
 
+// get first list of pokemons before rendering the app
 store.dispatch(actionGetPokemonList()).then(
     () => {
         ReactDOM.render(

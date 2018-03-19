@@ -4,10 +4,11 @@ import { actionGetPokemonList } from '../actions/actionPokemonList';
 import PokemonList from '../components/PokemonList';
 
 
+
 class Home extends React.Component {
     render = () => {
         return (
-            <article>
+            <article className='home'>
                 <PokemonList list={this.props.list} />
                 <button onClick={() => {
                     this.props.pullMoreItems();

@@ -6,7 +6,7 @@ import Home from '../pages/Home';
 const AppRouter = () => (
     <BrowserRouter>
         <div>
-            <header></header>
+            <header>Pokémon List</header>
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route component={Page404} />

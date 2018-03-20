@@ -1,15 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 import { actionGetPokemonList } from '../actions/actionPokemonList';
 import PokemonList from '../components/PokemonList';
 import Spinner from '../components/Spinner';
 
 import './styles/Home.scss';
+import Panel from '../components/Panel';
+import PokemonDetails from '../components/PokemonDetails';
 
 class Home extends React.Component {
 
+    previousLocation = this.props.location;
+
     handleListItemClick = (id) => {
-        console.log("Clicked on ", id);
+        this.props.history.push(`/pokemon/${id}`, { modal: true });
+        
     }
 
     handleScroll = () => {
@@ -28,6 +34,16 @@ class Home extends React.Component {
         window.addEventListener('scroll', this.handleScroll);
     }
 
+    componentWillUpdate = (nextProps) => {
+        const { location } = this.props;
+        // set previousLocation if props.location is not modal
+        if (
+            nextProps.history.action !== "POP" &&
+            (!location.state || !location.state.modal)
+        ) {
+            this.previousLocation = this.props.location;
+        }
+    }
     componentDidUpdate = (prevProps, prevState) => {
         if (this.props.list.length > 0 //dont for initial load
             && this.props.loading === true //is loading
@@ -49,16 +65,40 @@ class Home extends React.Component {
         this.detachScrollListener();
     }
     render = () => {
-        const { list, loading, noMore } = this.props;
+        const { location, list, loading, noMore } = this.props;
+        const isModal = !!(
+            location.state &&
+            location.state.modal &&
+            this.previousLocation !== location
+        ); // not initial render
         return (
-            <article className='home'>
-                <PokemonList list={list} handleClick={this.handleListItemClick}/>
+            <article className='home-page'>
+
+                <Switch location={isModal ? this.previousLocation : location}>
+                    <Route exact path='/' component={
+                        () => (
+                            <PokemonList list={list} handleClick={this.handleListItemClick} />
+                        )
+                    } />
+                </Switch>
                 {loading && <Spinner />}
                 {noMore &&
                     <div className='no-more'>
                         <p>-- The End --</p>
                     </div>
                 }
+                <Route exact path='/pokemon/:id' component={
+                    ({ history, match }, b) => {
+                        console.log('route', history, match, b);
+                        return (
+                            <Panel handlePanelDismiss={ _=>{
+                                history.goBack();
+                            }} >
+                                <PokemonDetails id={parseInt(match.params.id,10)} />
+                            </Panel>
+                        );
+                    }
+                } />
             </article>
         );
     }

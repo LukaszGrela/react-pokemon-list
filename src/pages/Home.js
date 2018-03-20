@@ -8,6 +8,10 @@ import './styles/Home.scss';
 
 class Home extends React.Component {
 
+    handleListItemClick = (id) => {
+        console.log("Clicked on ", id);
+    }
+
     handleScroll = () => {
         if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
             // reached the bottom
@@ -45,11 +49,16 @@ class Home extends React.Component {
         this.detachScrollListener();
     }
     render = () => {
-        const { list, loading } = this.props;
+        const { list, loading, noMore } = this.props;
         return (
             <article className='home'>
-                <PokemonList list={list} />
+                <PokemonList list={list} handleClick={this.handleListItemClick}/>
                 {loading && <Spinner />}
+                {noMore &&
+                    <div className='no-more'>
+                        <p>-- The End --</p>
+                    </div>
+                }
             </article>
         );
     }

@@ -2,27 +2,37 @@
 
 .pokemon-list {
 
+    &.interactive {
+        .pokemon-item {
+            cursor: pointer;
+
+            &:hover {
+                position: relative;
+                img {
+                    position: relative;
+                    top: -2px;
+                    left: -2px;
+                    @include png-shadow-2;
+                }
+            }
+        }
+    }
+
+    margin-bottom: 2rem;
+
     .pokemon-item {
         list-style: none;
         width: 10.4rem;
         height: 12.9rem;
         background-color: #f7f7f7;
-        text-align: center;
         margin: 1rem;
         border-radius: 0.8rem;
         display: inline-block;
+        
+        text-align: center;
+        vertical-align: bottom;
 
         @include shadow-1;
-
-        &:hover {
-            position: relative;
-            img {
-                position: relative;
-                top: -2px;
-                left: -2px;
-                @include png-shadow-2;
-            }
-        }
 
         img {
             width: 9.6rem;

@@ -7,6 +7,7 @@ exports[`Should render component correctly 1`] = `
   <li
     className="pokemon-item"
     key="0"
+    onClick={[Function]}
   >
     <img
       className="pokemon-image"

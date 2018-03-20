@@ -9,7 +9,7 @@ import './styles/Home.scss';
 import Panel from '../components/Panel';
 import PokemonDetails from '../components/PokemonDetails';
 
-class Home extends React.Component {
+export class Home extends React.Component {
 
     previousLocation = this.props.location;
 
@@ -49,7 +49,8 @@ class Home extends React.Component {
             && this.props.loading === true //is loading
             && this.props.loading !== prevProps.loading //was just switched to loading
         ) {
-            document.getElementsByClassName('loading-spinner')[0].scrollIntoView();
+            const spinner = document.getElementsByClassName('loading-spinner');
+            if(spinner && spinner.length > 0) spinner[0].scrollIntoView();
         }
         if (this.props.noMore !== prevProps.noMore && this.props.noMore) {
             this.detachScrollListener();//no more pulling

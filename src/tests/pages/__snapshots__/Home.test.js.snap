@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Home page correctly 1`] = `
+<article
+  className="home-page"
+>
+  <Switch
+    location={
+      Object {
+        "state": Object {
+          "modal": false,
+        },
+      }
+    }
+  >
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+  </Switch>
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/pokemon/:id"
+  />
+</article>
+`;
+
+exports[`Should render Home page correctly for loading state 1`] = `
+<article
+  className="home-page"
+>
+  <Switch
+    location={
+      Object {
+        "state": Object {
+          "modal": false,
+        },
+      }
+    }
+  >
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+  </Switch>
+  <Spinner />
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/pokemon/:id"
+  />
+</article>
+`;
+
+exports[`Should render Home page correctly for noMore state 1`] = `
+<article
+  className="home-page"
+>
+  <Switch
+    location={
+      Object {
+        "state": Object {
+          "modal": false,
+        },
+      }
+    }
+  >
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+  </Switch>
+  <div
+    className="no-more"
+  >
+    <p>
+      -- The End --
+    </p>
+  </div>
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/pokemon/:id"
+  />
+</article>
+`;

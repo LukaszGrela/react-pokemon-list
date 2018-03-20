@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render AppRouter correctly 1`] = `
+<BrowserRouter>
+  <div>
+    <header>
+      Pokémon List
+    </header>
+    <Switch>
+      <MediaQuery
+        key="media-query"
+        minWidth={410}
+        values={Object {}}
+      />
+      <Route
+        component={[Function]}
+      />
+    </Switch>
+  </div>
+</BrowserRouter>
+`;

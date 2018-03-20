@@ -137,10 +137,6 @@ test('should change error to be not null for GET_POKEMON_LIST_FINISHED failed ac
     const prevState = {
         ...DEFAULT_POKEMONS_STATE
     };
-    const payload = {
-        ...POKEMON_LIST,
-        next: null
-    };
     const state = pokemonReducer(prevState, actionGetPokemonListFinished(1, { error: "error" }, false));
 
     const newState = {

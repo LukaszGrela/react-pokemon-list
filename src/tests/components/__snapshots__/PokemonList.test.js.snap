@@ -12,7 +12,7 @@ exports[`Should render component correctly 1`] = `
     <img
       className="pokemon-image"
       onError={[Function]}
-      src="./static/pokemon/21.png"
+      src="/static/pokemon/21.png"
     />
     <div
       className="pokemon-name"

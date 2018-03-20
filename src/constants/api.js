@@ -4,7 +4,7 @@ export const API_LIST_POKEMON = 'pokemon/';
 
 export const API_GET_POKEMON = (id) => API_LIST_POKEMON + id;
 
-export const API_GET_SPRITE_FRONT = (id) => `./static/pokemon/${id}.png`;
+export const API_GET_SPRITE_FRONT = (id) => `/static/pokemon/${id}.png`;
 
 export const PAGINATION = (page=1, limit = 20) => {
     let params = {

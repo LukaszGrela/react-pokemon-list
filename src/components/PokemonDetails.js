@@ -7,8 +7,16 @@ import {
     API_GET_SPRITE_FRONT,
     API_GET_SPRITE_BACK
 } from '../constants/api';
+import { actionGetPokemonDetails } from '../actions/actionPokemonDetails';
 
 class PokemonDetails extends React.Component {
+
+    componentWillMount = () => {
+        const { id, pullPokemonDetails } = this.props;
+
+        pullPokemonDetails(id);
+    }
+
     render = () => {
         const { id } = this.props;
         return (
@@ -37,6 +45,7 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
     /* action to pull pokemon data  */
+    pullPokemonDetails: (id) => dispatch(actionGetPokemonDetails(id))
 });
 
-export default connect(mapStateToProps)(PokemonDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonDetails);

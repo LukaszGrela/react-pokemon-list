@@ -15,14 +15,14 @@ export const actionGetPokemonDetailsFinished = (payload, success, cached = false
 });
 export const actionGetPokemonDetails = (id) => {
     return (dispatch, getState) => {
-        const { details: store } = getState();
-        const { details={} } = store;
+        const { details } = getState();
+        const { dict = {} } = details;
         /* selector to check if state already have it */
         dispatch(actionGetPokemonDetailsStarted(id));
-        if (details.hasOwnProperty(id.toString()) && details[id.toString()]) {
+        if (dict.hasOwnProperty('pokemon-' + id) && dict['pokemon-' + id]) {
             //cached
             return new Promise((resolve, reject) => {
-                resolve(details[id.toString()]);
+                resolve(dict['pokemon-' + id]);
             }).then((payload) => {
                 dispatch(actionGetPokemonDetailsFinished(payload, true, true))
             })

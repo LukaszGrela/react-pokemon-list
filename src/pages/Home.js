@@ -90,7 +90,6 @@ export class Home extends React.Component {
                 }
                 <Route exact path='/pokemon/:id' component={
                     ({ history, match }, b) => {
-                        console.log('route', history, match, b);
                         return (
                             <Panel handlePanelDismiss={ _=>{
                                 history.goBack();

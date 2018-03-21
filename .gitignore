@@ -1,5 +1,6 @@
 # Pokemon resources
 /public/static/pokemon/*.*
+/public/static/pokemon/back/*.*
 
 # Logs
 logs

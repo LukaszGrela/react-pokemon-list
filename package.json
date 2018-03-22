@@ -1,6 +1,6 @@
 {
   "name": "react-pokemon-list",
-  "version": "0.0.13",
+  "version": "0.5.1",
   "description": "React app for REST example with Pokemon API",
   "main": "index.js",
   "repository": "https://github.com/LukaszGrela/react-pokemon-list",

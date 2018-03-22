@@ -7,6 +7,11 @@ exports[`Should render AppRouter correctly 1`] = `
       Pokémon List
     </header>
     <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/index.html"
+      />
       <MediaQuery
         key="media-query"
         minWidth={410}

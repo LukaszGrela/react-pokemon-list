@@ -92,7 +92,7 @@ export class Home extends React.Component {
                     ({ history, match }, b) => {
                         return (
                             <Panel handlePanelDismiss={ _=>{
-                                history.goBack();
+                                history.replace('/');
                             }} >
                                 <PokemonDetails id={parseInt(match.params.id,10)} />
                             </Panel>

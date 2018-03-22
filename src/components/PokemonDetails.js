@@ -12,6 +12,7 @@ import PokemonStats from './PokemonStats';
 import { actionGetPokemonDetails } from '../actions/actionPokemonDetails';
 import { pokemonListSelector } from '../selectors/pokemonListSelector';
 import { pokemonDetailSelector } from '../selectors/pokemonDetailSelector';
+import PokemonEvolutionChain from './PokemonEvolutionChain';
 
 class PokemonDetails extends React.Component {
 
@@ -47,8 +48,7 @@ class PokemonDetails extends React.Component {
                                 <div className='pokemon-height'><span className='label'>Height: </span><span className='value'>{(height / 10) + 'm'}</span></div>
                                 <PokemonStats stats={stats} />
                             </div>
-
-                            <div className='pokemon-evolution'>Loading...</div>
+                            <PokemonEvolutionChain />
                         </div>
                 }
             </div>

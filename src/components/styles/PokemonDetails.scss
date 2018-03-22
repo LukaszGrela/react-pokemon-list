@@ -4,11 +4,21 @@
 .pokemon-details {
     background-color: #fafafa;
     padding: 1.4rem;
-    min-width: 20rem;
+    min-width: 32rem;
+    min-height: 20rem;
     font-size: 1.4rem;
     border-radius: 1rem;
     
-    @include shadow-1;
+    // @include shadow-1;
+
+    .loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+        width: auto;
+        transform: translate(-50%, -50%);
+    }
 
     .pokemon-image {
         width: 9.6rem;

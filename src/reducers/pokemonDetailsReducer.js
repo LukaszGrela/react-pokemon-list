@@ -15,9 +15,8 @@ const pokemonDetailsReducer = (state = DEFAULT_DETAILS_STATE, action) => {
             return { ...state, error: null, loading: true };
             break;
         case GET_POKEMON_DETAILS_FINISHED:
-            const { payload } = action;
-            const success = action.success;
-            const cached = action.cached;
+            const { payload, success, cached } = action;
+            
             let newState = { ...state, loading: false };
             if (success && !cached) {
                 // get the id first

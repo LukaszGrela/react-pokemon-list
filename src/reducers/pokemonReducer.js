@@ -1,4 +1,5 @@
 import { GET_POKEMON_LIST_STARTED, GET_POKEMON_LIST_FINISHED } from "../actions/actionPokemonList";
+import { parseIdFromUrl } from "../utils/utils";
 
 export const DEFAULT_POKEMONS_STATE = {
     count: 0,
@@ -20,9 +21,7 @@ const pokemonReducer = (state = DEFAULT_POKEMONS_STATE, action) => {
             if (success) {
                 newState.noMore = action.payload.next === null;
                 newState.list = [...state.list, ...action.payload.results.map((item) => {
-                    const reg = /\/(\d+?)\/$/g;
-                    const result = reg.exec(item.url)[1];
-                    const id = parseInt(result, 10);
+                    const id = parseIdFromUrl(item.url);
                         return {...item, id};
                     }
                 )];

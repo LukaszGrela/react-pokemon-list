@@ -48,7 +48,7 @@ class PokemonDetails extends React.Component {
                                 <div className='pokemon-height'><span className='label'>Height: </span><span className='value'>{(height / 10) + 'm'}</span></div>
                                 <PokemonStats stats={stats} />
                             </div>
-                            <PokemonEvolutionChain />
+                            <PokemonEvolutionChain id={id} />
                         </div>
                 }
             </div>

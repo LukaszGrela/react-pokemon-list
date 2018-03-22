@@ -3,6 +3,7 @@ export const API_GATEWAY = 'https://pokeapi.co/api/v2/';
 export const API_LIST_POKEMON = 'pokemon/';
 
 export const API_GET_POKEMON = (id) => API_LIST_POKEMON + id;
+export const API_GET_EVOLUTION_CHAIN = (id) => `evolution-chain/${id}`;
 
 export const API_GET_SPRITE_FRONT = (id) => `/static/pokemon/${id}.png`;
 export const API_GET_SPRITE_BACK = (id) => `/static/pokemon/back/${id}.png`;

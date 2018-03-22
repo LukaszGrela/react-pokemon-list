@@ -1,3 +1,57 @@
+@import '../../styles/_mixins.scss';
+
+
 .pokemon-details {
-    background-color:#fafafa;
+    background-color: #fafafa;
+    padding: 1.4rem;
+    min-width: 20rem;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    
+    @include shadow-1;
+
+    .pokemon-image {
+        width: 9.6rem;
+        height: 9.6rem;
+        margin: 1rem;
+        image-rendering: pixelated;
+        display: inline-block;
+    }
+    .pokemon-name {
+        display: inline-block;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 3.2rem;
+        text-align: center;
+        vertical-align: top;
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+    .pokemon-weight {
+        display: inline-block;
+        margin-right:1rem;
+        margin-bottom: 1rem;
+        .label {
+            font-weight: bold;
+        }
+    }
+    
+    .pokemon-height {
+        display: inline-block;
+        margin-left:1rem;
+        margin-bottom: 1rem;
+        .label {
+            font-weight: bold;
+        }
+    }
+    .column-right {
+        width: 73%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .column-left {
+        width: 23%;
+        min-width: 11.6rem;
+    }
+    
 }

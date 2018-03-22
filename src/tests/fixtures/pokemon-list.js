@@ -10769,3 +10769,54 @@ export const EVOLUTION_50 = {
 		"species": { "url": "https:\/\/pokeapi.co\/api\/v2\/pokemon-species\/111\/", "name": "rhyhorn" }
 	}
 };
+
+export const POKEMON_50_STATS = [
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/6/',
+		name: 'speed'
+	  },
+	  effort: 1,
+	  base_stat: 95
+	},
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/5/',
+		name: 'special-defense'
+	  },
+	  effort: 0,
+	  base_stat: 45
+	},
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/4/',
+		name: 'special-attack'
+	  },
+	  effort: 0,
+	  base_stat: 35
+	},
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/3/',
+		name: 'defense'
+	  },
+	  effort: 0,
+	  base_stat: 25
+	},
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/2/',
+		name: 'attack'
+	  },
+	  effort: 0,
+	  base_stat: 55
+	},
+	{
+	  stat: {
+		url: 'https://pokeapi.co/api/v2/stat/1/',
+		name: 'hp'
+	  },
+	  effort: 0,
+	  base_stat: 10
+	}
+  ];

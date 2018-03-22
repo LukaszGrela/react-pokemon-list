@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import MediaQuery from 'react-responsive';
 
@@ -12,6 +12,9 @@ const AppRouter = () => (
         <div>
             <header>Pokémon List</header>
             <Switch>
+                <Route exact path="/index.html" component={() => {
+                    return <Redirect to='/' />
+                }} />
                 <MediaQuery
                     key={'media-query'}
                     minWidth={410}>
@@ -34,6 +37,6 @@ const AppRouter = () => (
             </Switch>
         </div>
     </BrowserRouter>
-        );
-        
+);
+
 export default AppRouter;

@@ -9,4 +9,4 @@ git clone https://github.com/LukaszGrela/react-pokemon-list.git
 - /public/static/pokemon/back
 
 ### Evolution Chain
-Currently the https://pokeapi.co provides broken data of the evolution chains, which means that you can't see valid chains for selected pokemon. Also for simplicity I'm taking only first item of the `evolves_to` array. e.g. eevee can evolve into 7 different pokemons but I'm displaying only one.
+Currently the https://pokeapi.co provides broken data of the evolution chains, which means that you can't see valid chains for selected pokemon. Also for simplicity I'm taking only first item of the `evolves_to` array. e.g. eevee can evolve into 8 different pokemons but I'm displaying only one.

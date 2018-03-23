@@ -4,6 +4,7 @@ import { API_GET_SPRITE_FRONT } from '../constants/api';
 
 import './styles/PokemonList.scss';
 import Image from './Image';
+import PokemonListItem from './PokemonListItem';
 
 export default class PokemonList extends React.Component {
     render = () => {
@@ -11,17 +12,11 @@ export default class PokemonList extends React.Component {
         return (
             <ul className={'pokemon-list' + (handleClick ? ' interactive' : '')}>
                 {
-                    list.map(({ url, name, id }, index) => <li key={index}
-                        onClick={() => {
-                            handleClick && handleClick(id);
-                        }}
-                        className='pokemon-item'>
-                        <Image
-                            src={API_GET_SPRITE_FRONT(id)}
-                            fallback={API_GET_SPRITE_FRONT('default/0')}
-                            className='pokemon-image' />
-                        <div className='pokemon-name'>{name}</div>
-                    </li>)
+                    list.map(({ url, name, id }, index) => <PokemonListItem
+                        key={index}
+                        id={id}
+                        name={name}
+                        handleClick={handleClick} />)
                 }
             </ul>)
 

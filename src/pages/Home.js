@@ -12,16 +12,14 @@ import PokemonDetails from '../components/PokemonDetails';
 
 export class Home extends React.Component {
     state = {
-        showLoadMore:false
+        showLoadMore: false
     }
 
     previousLocation = this.props.location;
 
     handleLoadMore = () => {
         this.props.pullMoreItems().then(() => {
-            this.setState(_=>({
-                showLoadMore:(document.body.scrollHeight <= window.innerHeight)
-            }));
+            this.shouldShowMore();
         });
     }
 
@@ -35,6 +33,7 @@ export class Home extends React.Component {
         if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
             // reached the bottom
             this.detachScrollListener();//stop listening
+            this.shouldShowMore();
             this.props.pullMoreItems();
         }
     }
@@ -73,16 +72,14 @@ export class Home extends React.Component {
         }
     }
 
-
+    shouldShowMore = () => {
+        this.setState(_ => ({
+            showLoadMore: (document.body.scrollHeight <= window.innerHeight)
+        }));
+    }
 
     componentDidMount = () => {
-
-        if (document.body.scrollHeight <= window.innerHeight) {
-            //no scroll bar for infinite scroll, show load more
-           this.setState(() => ({
-               showLoadMore:true
-           }));
-        }
+        this.shouldShowMore();
     }
     componentWillMount = () => {
         this.attachScrollListener();
@@ -103,15 +100,18 @@ export class Home extends React.Component {
 
                 <Switch location={isModal ? this.previousLocation : location}>
                     <Route exact path='/' component={
-                        () => (
-                            <PokemonList list={list} handleClick={this.handleListItemClick} />
-                        )
+                        () => {
+                            // TODO: How to avoid calling this when popup is opened and location changed
+                            return (
+                                <PokemonList list={list} handleClick={this.handleListItemClick} />
+                            )
+                        }
                     } />
                 </Switch>
                 {loading && <Spinner />}
                 {!loading && showLoadMore && <LoadMore clickHandler={
                     this.handleLoadMore
-                }/>}
+                } />}
                 {noMore &&
                     <div className='no-more'>
                         <p>-- The End --</p>

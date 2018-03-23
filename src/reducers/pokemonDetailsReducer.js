@@ -13,7 +13,6 @@ const pokemonDetailsReducer = (state = DEFAULT_DETAILS_STATE, action) => {
     switch (action.type) {
         case GET_POKEMON_DETAILS_STARTED:
             return { ...state, error: null, loading: true };
-            break;
         case GET_POKEMON_DETAILS_FINISHED:
             const { payload, success, cached } = action;
             
@@ -36,7 +35,6 @@ const pokemonDetailsReducer = (state = DEFAULT_DETAILS_STATE, action) => {
             return newState;
         default:
             return state;
-            break;
     }
 
 

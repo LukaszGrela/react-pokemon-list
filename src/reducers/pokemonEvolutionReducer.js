@@ -14,7 +14,6 @@ const pokemonEvolutionReducer = (state = DEFAULT_EVOLUTION_CHAIN_STATE, action) 
     switch (action.type) {
         case GET_POKEMON_EVOLUTION_CHAIN_STARTED:
             return { ...state, error: null, loading: true };
-            break;
         case GET_POKEMON_EVOLUTION_CHAIN_FINISHED:
             const { payload, success, cached } = action;
             let newState = { ...state, loading: false };
@@ -26,10 +25,8 @@ const pokemonEvolutionReducer = (state = DEFAULT_EVOLUTION_CHAIN_STATE, action) 
                 newState.error = payload;
             }
             return newState;
-            break;
         default:
             return state;
-            break;
     }
 };
 export default pokemonEvolutionReducer;

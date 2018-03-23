@@ -14,7 +14,6 @@ const pokemonReducer = (state = DEFAULT_POKEMONS_STATE, action) => {
     switch (action.type) {
         case GET_POKEMON_LIST_STARTED:
             return { ...state, error: null, loading: true };
-            break;
         case GET_POKEMON_LIST_FINISHED:
             const success = action.success;
             let newState = { ...state, loading: false, page: action.page };
@@ -22,19 +21,15 @@ const pokemonReducer = (state = DEFAULT_POKEMONS_STATE, action) => {
                 newState.noMore = action.payload.next === null;
                 newState.list = [...state.list, ...action.payload.results.map((item) => {
                     const id = parseIdFromUrl(item.url);
-                        return {...item, id};
-                    }
+                    return { ...item, id };
+                }
                 )];
                 newState.count = action.payload.count;
-
-
             } else {
                 newState.error = action.payload;
             }
             return newState;
-            break;
         default:
-            break;
     }
 
 

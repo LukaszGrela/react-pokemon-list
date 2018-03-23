@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Image = ({ src, className, fallback }) => (
+const Image = ({ src, alt, className, fallback }) => (
     <img
         src={src}
+        alt={alt ? alt : ''}
         className={'image ' + className}
         onError={(e) => {
             if (fallback)
@@ -11,7 +12,10 @@ const Image = ({ src, className, fallback }) => (
         }} />
 );
 Image.propTypes = {
-    src: PropTypes.string.isRequired
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+    className: PropTypes.string,
+    fallback: PropTypes.string
 };
 
 

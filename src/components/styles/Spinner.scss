@@ -22,9 +22,6 @@ $spinnerStrokeWidth: 2px;
     svg.spinner {
         width: $spinnerSize + px;
         height: $spinnerSize + px;
-        x: 0px;
-        y: 0px;
-        viewBox: 0 0 $spinnerSize $spinnerSize;
 
         circle {
             fill: transparent;

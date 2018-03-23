@@ -19,6 +19,9 @@ exports[`Should render Home page correctly 1`] = `
       path="/"
     />
   </Switch>
+  <LoadMore
+    clickHandler={[Function]}
+  />
   <Route
     component={[Function]}
     exact={true}
@@ -74,6 +77,9 @@ exports[`Should render Home page correctly for noMore state 1`] = `
       path="/"
     />
   </Switch>
+  <LoadMore
+    clickHandler={[Function]}
+  />
   <div
     className="no-more"
   >

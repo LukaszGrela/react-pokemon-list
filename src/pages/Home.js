@@ -4,18 +4,31 @@ import { Switch, Route } from 'react-router-dom';
 import { actionGetPokemonList } from '../actions/actionPokemonList';
 import PokemonList from '../components/PokemonList';
 import Spinner from '../components/Spinner';
+import LoadMore from '../components/LoadMore';
 
 import './styles/Home.scss';
 import Panel from '../components/Panel';
 import PokemonDetails from '../components/PokemonDetails';
 
 export class Home extends React.Component {
+    state = {
+        showLoadMore:false
+    }
 
     previousLocation = this.props.location;
 
+    handleLoadMore = () => {
+        this.props.pullMoreItems().then(() => {
+            this.setState(_=>({
+                showLoadMore:(document.body.scrollHeight <= window.innerHeight)
+            }));
+        });
+    }
+
+
     handleListItemClick = (id) => {
         this.props.history.push(`/pokemon/${id}`, { modal: true });
-        
+
     }
 
     handleScroll = () => {
@@ -50,13 +63,25 @@ export class Home extends React.Component {
             && this.props.loading !== prevProps.loading //was just switched to loading
         ) {
             const spinner = document.getElementsByClassName('loading-spinner');
-            if(spinner && spinner.length > 0) spinner[0].scrollIntoView();
+            if (spinner && spinner.length > 0) spinner[0].scrollIntoView();
         }
         if (this.props.noMore !== prevProps.noMore && this.props.noMore) {
             this.detachScrollListener();//no more pulling
         }
         if (!this.props.noMore && this.props.loading !== prevProps.loading && this.props.loading === false) {
             this.attachScrollListener();//reattach listener
+        }
+    }
+
+
+
+    componentDidMount = () => {
+
+        if (document.body.scrollHeight <= window.innerHeight) {
+            //no scroll bar for infinite scroll, show load more
+           this.setState(() => ({
+               showLoadMore:true
+           }));
         }
     }
     componentWillMount = () => {
@@ -66,6 +91,7 @@ export class Home extends React.Component {
         this.detachScrollListener();
     }
     render = () => {
+        const { showLoadMore = false } = this.state;
         const { location, list, loading, noMore } = this.props;
         const isModal = !!(
             location.state &&
@@ -83,6 +109,9 @@ export class Home extends React.Component {
                     } />
                 </Switch>
                 {loading && <Spinner />}
+                {!loading && showLoadMore && <LoadMore clickHandler={
+                    this.handleLoadMore
+                }/>}
                 {noMore &&
                     <div className='no-more'>
                         <p>-- The End --</p>
@@ -91,10 +120,10 @@ export class Home extends React.Component {
                 <Route exact path='/pokemon/:id' component={
                     ({ history, match }, b) => {
                         return (
-                            <Panel handlePanelDismiss={ _=>{
+                            <Panel handlePanelDismiss={_ => {
                                 history.replace('/');
                             }} >
-                                <PokemonDetails id={parseInt(match.params.id,10)} />
+                                <PokemonDetails id={parseInt(match.params.id, 10)} />
                             </Panel>
                         );
                     }

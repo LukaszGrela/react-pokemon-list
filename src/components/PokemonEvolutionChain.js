@@ -57,7 +57,8 @@ class PokemonEvolutionChain extends React.Component {
                                     <Image
                                         src={API_GET_SPRITE_FRONT(id)}
                                         fallback={API_GET_SPRITE_FRONT('default/0')}
-                                        className='front' />
+                                        className='front'
+                                        alt={`Image of ${name} pokemon.`} />
                                     <div className='name'>{name}</div>
                                 </div>
                             ];

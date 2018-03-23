@@ -36,11 +36,13 @@ class PokemonDetails extends React.Component {
                                 <Image
                                     src={API_GET_SPRITE_FRONT(id)}
                                     fallback={API_GET_SPRITE_FRONT('default/0')}
-                                    className='front' />
+                                    className='front'
+                                    alt={`Image of ${name} pokemon.`} />
                                 <Image
                                     src={API_GET_SPRITE_BACK(id)}
                                     fallback={API_GET_SPRITE_FRONT('default/0')}
-                                    className='back' />
+                                    className='back'
+                                    alt={`Image of the back of the ${name} pokemon.`} />
                             </div>
                             <div className='column-right'>
                                 <div className='pokemon-name'>{name}</div>

@@ -27,13 +27,13 @@ const AppRouter = () => (
                                 /* small devices */
                                 return [
                                     <Route path="/" exact component={Home} key={'route-1'} />,
-                                    <Route path="/pokemon/:id" exact component={PokemonDetailsPage} key={'route-2'} />
+                                    <Route path="/pokemon/:id" exact component={PokemonDetailsPage} key={'route-2'} />,
+                                    <Route component={Page404} key={'rout-3'}/>
                                 ];
                             }
                         }
                     }
                 </MediaQuery>
-                <Route component={Page404} />
             </Switch>
         </div>
     </BrowserRouter>

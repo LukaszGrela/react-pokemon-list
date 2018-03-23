@@ -5,10 +5,12 @@ import { actionGetPokemonList } from '../actions/actionPokemonList';
 import PokemonList from '../components/PokemonList';
 import Spinner from '../components/Spinner';
 import LoadMore from '../components/LoadMore';
-
-import './styles/Home.scss';
 import Panel from '../components/Panel';
 import PokemonDetails from '../components/PokemonDetails';
+
+import Page404 from './Page404';
+
+import './styles/Home.scss';
 
 export class Home extends React.Component {
     state = {
@@ -107,11 +109,10 @@ export class Home extends React.Component {
                             )
                         }
                     } />
+                    <Route component={Page404} />
                 </Switch>
                 {loading && <Spinner />}
-                {!loading && showLoadMore && <LoadMore clickHandler={
-                    this.handleLoadMore
-                } />}
+                {!loading && showLoadMore && <LoadMore clickHandler={ this.handleLoadMore  } />}
                 {noMore &&
                     <div className='no-more'>
                         <p>-- The End --</p>

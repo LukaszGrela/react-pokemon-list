@@ -18,6 +18,9 @@ exports[`Should render Home page correctly 1`] = `
       exact={true}
       path="/"
     />
+    <Route
+      component={[Function]}
+    />
   </Switch>
   <LoadMore
     clickHandler={[Function]}
@@ -48,6 +51,9 @@ exports[`Should render Home page correctly for loading state 1`] = `
       exact={true}
       path="/"
     />
+    <Route
+      component={[Function]}
+    />
   </Switch>
   <Spinner />
   <Route
@@ -75,6 +81,9 @@ exports[`Should render Home page correctly for noMore state 1`] = `
       component={[Function]}
       exact={true}
       path="/"
+    />
+    <Route
+      component={[Function]}
     />
   </Switch>
   <LoadMore

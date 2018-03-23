@@ -17,9 +17,6 @@ exports[`Should render AppRouter correctly 1`] = `
         minWidth={410}
         values={Object {}}
       />
-      <Route
-        component={[Function]}
-      />
     </Switch>
   </div>
 </BrowserRouter>

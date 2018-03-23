@@ -4,21 +4,10 @@ exports[`Should render component correctly 1`] = `
 <ul
   className="pokemon-list"
 >
-  <li
-    className="pokemon-item"
+  <PokemonListItem
+    id={21}
     key="0"
-    onClick={[Function]}
-  >
-    <Image
-      className="pokemon-image"
-      fallback="/static/pokemon/default/0.png"
-      src="/static/pokemon/21.png"
-    />
-    <div
-      className="pokemon-name"
-    >
-      spearow
-    </div>
-  </li>
+    name="spearow"
+  />
 </ul>
 `;

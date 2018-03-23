@@ -14,7 +14,7 @@ export default class PokemonStats extends React.Component {
                     {
                         stats.map((stat, index) => {
                             return (
-                                <div key={'stat' + index}
+                                <div key={index}
                                     className={`stat stat-${stat.stat.name}`}>
                                     <span className='label'>{stat.stat.name}: </span>
                                     <span className='value'>{stat.base_stat}</span>

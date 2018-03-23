@@ -8,6 +8,7 @@ import { API_GET_SPRITE_FRONT } from '../constants/api';
 
 
 import './styles/PokemonEvolutionChain.scss';
+import Image from './Image';
 
 class PokemonEvolutionChain extends React.Component {
 
@@ -53,16 +54,16 @@ class PokemonEvolutionChain extends React.Component {
 
                             const jsx = [
                                 <div className='link' key={index}>
-                                    <img src={API_GET_SPRITE_FRONT(id)} className='front'
-                                        onError={(e) => {
-                                            e.target.src = API_GET_SPRITE_FRONT('default/0');
-                                        }} />
-                                        <div className='name'>{name}</div>
+                                    <Image
+                                        src={API_GET_SPRITE_FRONT(id)}
+                                        fallback={API_GET_SPRITE_FRONT('default/0')}
+                                        className='front' />
+                                    <div className='name'>{name}</div>
                                 </div>
                             ];
 
                             if (index < list.length - 1) {
-                                jsx.push(<div className='arrow-right' key={'arrow' + index}></div>);
+                                jsx.push(<div className='arrow-right' key={'arrow-' + index}></div>);
                             }
 
 

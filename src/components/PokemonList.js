@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { API_GET_SPRITE_FRONT } from '../constants/api';
 
 import './styles/PokemonList.scss';
+import Image from './Image';
 
 export default class PokemonList extends React.Component {
     render = () => {
@@ -15,10 +16,10 @@ export default class PokemonList extends React.Component {
                             handleClick && handleClick(id);
                         }}
                         className='pokemon-item'>
-                        <img src={API_GET_SPRITE_FRONT(id)} className='pokemon-image'
-                            onError={(e) => {
-                                e.target.src = API_GET_SPRITE_FRONT('default/0');
-                            }} />
+                        <Image
+                            src={API_GET_SPRITE_FRONT(id)}
+                            fallback={API_GET_SPRITE_FRONT('default/0')}
+                            className='pokemon-image' />
                         <div className='pokemon-name'>{name}</div>
                     </li>)
                 }

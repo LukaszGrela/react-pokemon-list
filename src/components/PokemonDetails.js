@@ -13,6 +13,7 @@ import { actionGetPokemonDetails } from '../actions/actionPokemonDetails';
 import { pokemonListSelector } from '../selectors/pokemonListSelector';
 import { pokemonDetailSelector } from '../selectors/pokemonDetailSelector';
 import PokemonEvolutionChain from './PokemonEvolutionChain';
+import Image from './Image';
 
 class PokemonDetails extends React.Component {
 
@@ -32,15 +33,14 @@ class PokemonDetails extends React.Component {
                         :
                         <div className='pokemon-details-wrapper'>
                             <div className='pokemon-image column-left'>
-                                <img src={API_GET_SPRITE_FRONT(id)} className='front'
-                                    onError={(e) => {
-                                        e.target.src = API_GET_SPRITE_FRONT('default/0');
-                                    }} />
-                                <img src={API_GET_SPRITE_BACK(id)} className='back'
-                                    onError={(e) => {
-                                        e.target.src = API_GET_SPRITE_FRONT('default/0');
-                                    }} />
-
+                                <Image
+                                    src={API_GET_SPRITE_FRONT(id)}
+                                    fallback={API_GET_SPRITE_FRONT('default/0')}
+                                    className='front' />
+                                <Image
+                                    src={API_GET_SPRITE_BACK(id)}
+                                    fallback={API_GET_SPRITE_FRONT('default/0')}
+                                    className='back' />
                             </div>
                             <div className='column-right'>
                                 <div className='pokemon-name'>{name}</div>

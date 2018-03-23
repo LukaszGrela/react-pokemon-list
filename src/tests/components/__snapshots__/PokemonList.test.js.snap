@@ -9,9 +9,9 @@ exports[`Should render component correctly 1`] = `
     key="0"
     onClick={[Function]}
   >
-    <img
+    <Image
       className="pokemon-image"
-      onError={[Function]}
+      fallback="/static/pokemon/default/0.png"
       src="/static/pokemon/21.png"
     />
     <div

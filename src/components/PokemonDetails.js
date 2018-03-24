@@ -17,6 +17,11 @@ import Image from './Image';
 
 class PokemonDetails extends React.Component {
 
+    handleShowPokemon = (id) => {
+        const { history } = this.props;
+        history.push(`/pokemon/${id}`);
+    }
+
     componentWillMount = () => {
         const { id, pullPokemonDetails } = this.props;
 
@@ -50,7 +55,8 @@ class PokemonDetails extends React.Component {
                                 <div className='pokemon-height'><span className='label'>Height: </span><span className='value'>{(height / 10) + 'm'}</span></div>
                                 <PokemonStats stats={stats} />
                             </div>
-                            <PokemonEvolutionChain id={id} />
+                            <PokemonEvolutionChain id={id}
+                                handleShowPokemon={this.handleShowPokemon} />
                         </div>
                 }
             </div>

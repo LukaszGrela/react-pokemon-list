@@ -36,7 +36,7 @@ class PokemonEvolutionChain extends React.Component {
     }
 
     render = () => {
-        const { id, loading = true, chain, error } = this.props;
+        const { id, loading = true, chain, error, handleShowPokemon } = this.props;
 
         if (!chain) return null;
         else {
@@ -49,13 +49,18 @@ class PokemonEvolutionChain extends React.Component {
                     <h3>Evolution Chain</h3>
                     {loading && 'Loading...'}
                     {
-                        !loading && evolution.map(({ id, name }, index, list) => {
+                        !loading && evolution.map(({ id: pid, name }, index, list) => {
 
 
                             const jsx = [
-                                <div className='link' key={index}>
+                                <div className={'link' + (handleShowPokemon && id !== pid ? ' interactive' : '')} key={index}
+                                    onClick={id !== pid ?
+                                        () => {
+                                            handleShowPokemon && handleShowPokemon(pid)
+                                        }
+                                        : null}>
                                     <Image
-                                        src={API_GET_SPRITE_FRONT(id)}
+                                        src={API_GET_SPRITE_FRONT(pid)}
                                         fallback={API_GET_SPRITE_FRONT('default/0')}
                                         className='front'
                                         alt={`Image of ${name} pokemon.`} />
@@ -78,7 +83,8 @@ class PokemonEvolutionChain extends React.Component {
 };
 
 PokemonEvolutionChain.propTypes = {
-    id: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired,
+    handleShowPokemon: PropTypes.func
 };
 
 const mapStateToProps = (state, props) => {

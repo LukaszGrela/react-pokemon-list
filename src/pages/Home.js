@@ -8,8 +8,6 @@ import LoadMore from '../components/LoadMore';
 import Panel from '../components/Panel';
 import PokemonDetails from '../components/PokemonDetails';
 
-import Page404 from './Page404';
-
 import './styles/Home.scss';
 
 export class Home extends React.Component {
@@ -109,7 +107,6 @@ export class Home extends React.Component {
                             )
                         }
                     } />
-                    <Route component={Page404} />
                 </Switch>
                 {loading && <Spinner />}
                 {!loading && showLoadMore && <LoadMore clickHandler={ this.handleLoadMore  } />}
@@ -124,7 +121,7 @@ export class Home extends React.Component {
                             <Panel handlePanelDismiss={_ => {
                                 history.replace('/');
                             }} >
-                                <PokemonDetails id={parseInt(match.params.id, 10)} />
+                                <PokemonDetails id={parseInt(match.params.id, 10)} history={history} />
                             </Panel>
                         );
                     }

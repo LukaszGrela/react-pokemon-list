@@ -14,4 +14,7 @@
       .link {
           display: inline-block;
       }
+      .link.interactive {
+         cursor: pointer;
+      }
 }

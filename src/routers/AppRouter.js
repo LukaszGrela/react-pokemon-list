@@ -10,31 +10,30 @@ import PokemonDetailsPage from '../pages/PokemonDetailsPage';
 const AppRouter = () => (
     <BrowserRouter>
         <div>
-            <header>Pokémon List</header>
             <Switch>
                 <Route exact path="/index.html" component={() => {
                     return <Redirect to='/' />
                 }} />
-                <MediaQuery
-                    key={'media-query'}
-                    minWidth={410}>
-                    {
-                        (matches) => {
-                            if (matches) {
-                                /* normal */
-                                return <Route component={Home} key={'route-1'} />
-                            } else {
-                                /* small devices */
-                                return [
-                                    <Route path="/" exact component={Home} key={'route-1'} />,
-                                    <Route path="/pokemon/:id" exact component={PokemonDetailsPage} key={'route-2'} />,
-                                    <Route component={Page404} key={'rout-3'}/>
-                                ];
-                            }
+            </Switch>
+            <MediaQuery
+                key={'media-query'}
+                minWidth={410}>
+                {
+                    (matches) => {
+                        if (matches) {
+                            /* normal */
+                            return <Switch><Route component={Home} key={'route-1'} /></Switch>
+                        } else {
+                            /* small devices */
+                            return <Switch>
+                                <Route path="/" exact component={Home} key={'route-1'} />
+                                <Route path="/pokemon/:id" exact component={PokemonDetailsPage} key={'route-2'} />
+                                <Route component={Page404} key={'route-3'} />
+                            </Switch>
                         }
                     }
-                </MediaQuery>
-            </Switch>
+                }
+            </MediaQuery>
         </div>
     </BrowserRouter>
 );

@@ -1,5 +1,7 @@
 import { GET_POKEMON_LIST_STARTED, GET_POKEMON_LIST_FINISHED } from "../actions/actionPokemonList";
 import { parseIdFromUrl } from "../utils/utils";
+import { GET_POKEMON_DETAILS_FINISHED } from "../actions/actionPokemonDetails";
+import { API_GATEWAY, API_GET_POKEMON } from "../constants/api";
 
 export const DEFAULT_POKEMONS_STATE = {
     count: 0,
@@ -29,10 +31,28 @@ const pokemonReducer = (state = DEFAULT_POKEMONS_STATE, action) => {
                 newState.error = action.payload;
             }
             return newState;
+/*
+        case GET_POKEMON_DETAILS_FINISHED:
+
+            if (action.success) {
+                const { id, name } = action.payload;
+                const url = API_GATEWAY + API_GET_POKEMON(id);
+                let insert = [];
+                if (state.list.find((item) => item.id === id) === undefined) {
+                    insert = [{ id, name, url }];
+                }
+
+                return { ...state, list: [...state.list, ...insert] };
+
+            }
+
+
+            return state;
+            */
         default:
+            return state;
     }
 
 
-    return state;
 };
 export default pokemonReducer;

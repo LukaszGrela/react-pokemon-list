@@ -1,5 +1,12 @@
+@import '../../styles/_mixins.scss';
+
 .home-page {
     text-align: center;
+    @include media(0, 41rem) {
+        
+            width: 100%;
+        
+    }
     .loading-spinner {
         width: 100%;
         margin-bottom: 3rem;

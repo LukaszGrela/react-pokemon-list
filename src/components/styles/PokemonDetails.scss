@@ -1,16 +1,16 @@
 @import '../../styles/_mixins.scss';
-
-
 .pokemon-details {
     background-color: #fafafa;
     padding: 1.4rem;
     min-width: 32rem;
     min-height: 20rem;
     font-size: 1.4rem;
-    border-radius: 1rem;
-    
-    // @include shadow-1;
-
+    border-radius: 1rem; // @include shadow-1;
+    @include media(0, 41rem) {
+        .pokemon-details-wrapper {
+            text-align: center;
+        }
+    }
     .loading-spinner {
         position: absolute;
         top: 50%;
@@ -19,7 +19,6 @@
         width: auto;
         transform: translate(-50%, -50%);
     }
-
     .pokemon-image {
         width: 9.6rem;
         height: 9.6rem;
@@ -39,16 +38,15 @@
     }
     .pokemon-weight {
         display: inline-block;
-        margin-right:1rem;
+        margin-right: 1rem;
         margin-bottom: 1rem;
         .label {
             font-weight: bold;
         }
     }
-    
     .pokemon-height {
         display: inline-block;
-        margin-left:1rem;
+        margin-left: 1rem;
         margin-bottom: 1rem;
         .label {
             font-weight: bold;
@@ -58,10 +56,15 @@
         width: 73%;
         display: inline-block;
         vertical-align: top;
+        @include media(0, 41rem) {
+            width: initial;
+        }
     }
     .column-left {
         width: 23%;
         min-width: 11.6rem;
+        @include media(0, 41rem) {
+            width: initial;
+        }
     }
-    
 }

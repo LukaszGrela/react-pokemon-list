@@ -97,7 +97,7 @@ export class Home extends React.Component {
         ); // not initial render
         return (
             <article className='home-page'>
-
+                <header>Pokémon List</header>
                 <Switch location={isModal ? this.previousLocation : location}>
                     <Route exact path='/' component={
                         () => {
@@ -109,7 +109,7 @@ export class Home extends React.Component {
                     } />
                 </Switch>
                 {loading && <Spinner />}
-                {!loading && showLoadMore && <LoadMore clickHandler={ this.handleLoadMore  } />}
+                {!loading && showLoadMore && <LoadMore clickHandler={this.handleLoadMore} />}
                 {noMore &&
                     <div className='no-more'>
                         <p>-- The End --</p>
@@ -121,7 +121,9 @@ export class Home extends React.Component {
                             <Panel handlePanelDismiss={_ => {
                                 history.replace('/');
                             }} >
-                                <PokemonDetails id={parseInt(match.params.id, 10)} history={history} />
+                                <PokemonDetails
+                                    id={parseInt(match.params.id, 10)}
+                                    history={history} />
                             </Panel>
                         );
                     }

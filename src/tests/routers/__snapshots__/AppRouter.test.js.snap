@@ -12,12 +12,12 @@ exports[`Should render AppRouter correctly 1`] = `
         exact={true}
         path="/index.html"
       />
-      <MediaQuery
-        key="media-query"
-        minWidth={410}
-        values={Object {}}
-      />
     </Switch>
+    <MediaQuery
+      key="media-query"
+      minWidth={410}
+      values={Object {}}
+    />
   </div>
 </BrowserRouter>
 `;

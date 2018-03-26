@@ -19,12 +19,15 @@ class PokemonDetails extends React.Component {
 
     handleShowPokemon = (id) => {
         const { history } = this.props;
-        history.push(`/pokemon/${id}`);
+        if (!this.props.handleShowPokemon) {
+            history.push(`/pokemon/${id}`);
+        } else {
+            this.props.handleShowPokemon(id);
+        }
     }
 
     componentWillMount = () => {
         const { id, pullPokemonDetails } = this.props;
-
         pullPokemonDetails(id);
     }
 
@@ -56,7 +59,7 @@ class PokemonDetails extends React.Component {
                                 <PokemonStats stats={stats} />
                             </div>
                             <PokemonEvolutionChain id={id}
-                                handleShowPokemon={this.handleShowPokemon} />
+                                /*handleShowPokemon={this.handleShowPokemon}*/ />
                         </div>
                 }
             </div>
@@ -65,7 +68,9 @@ class PokemonDetails extends React.Component {
 }
 
 PokemonDetails.propTypes = {
-    id: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired,
+    history: PropTypes.object.isRequired,
+    handleShowPokemon: PropTypes.func
 };
 
 const mapStateToProps = (state, props) => {

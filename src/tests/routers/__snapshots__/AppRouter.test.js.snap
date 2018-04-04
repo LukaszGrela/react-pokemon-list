@@ -3,9 +3,6 @@
 exports[`Should render AppRouter correctly 1`] = `
 <BrowserRouter>
   <div>
-    <header>
-      Pokémon List
-    </header>
     <Switch>
       <Route
         component={[Function]}

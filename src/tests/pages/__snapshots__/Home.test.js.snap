@@ -4,6 +4,9 @@ exports[`Should render Home page correctly 1`] = `
 <article
   className="home-page"
 >
+  <header>
+    Pokémon List
+  </header>
   <Switch
     location={
       Object {
@@ -34,6 +37,9 @@ exports[`Should render Home page correctly for loading state 1`] = `
 <article
   className="home-page"
 >
+  <header>
+    Pokémon List
+  </header>
   <Switch
     location={
       Object {
@@ -62,6 +68,9 @@ exports[`Should render Home page correctly for noMore state 1`] = `
 <article
   className="home-page"
 >
+  <header>
+    Pokémon List
+  </header>
   <Switch
     location={
       Object {

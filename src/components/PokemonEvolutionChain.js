@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { pokemonEvolutionChainSelector } from '../selectors/pokemonEvolutionChainSelector';
-import { actionGetPokemonEvolutionChain } from '../actions/actionPokemonEvolutionChain';
 import { parseIdFromUrl } from '../utils/utils';
 import { API_GET_SPRITE_FRONT } from '../constants/api';
 
@@ -34,9 +31,39 @@ class PokemonEvolutionChain extends React.Component {
 
         return initial;
     }
+    renderChain = (evolution) => {
+        const { id, loading = true, chain, error, handleShowPokemon } = this.props;
+        
+        return evolution.map(({ id: pid, name }, index, list) => {
+
+
+            const jsx = [
+                <div className={'link' + (handleShowPokemon && id !== pid ? ' interactive' : '')} key={pid}
+                    onClick={id !== pid ?
+                        () => {
+                            handleShowPokemon && handleShowPokemon(pid)
+                        }
+                        : null}>
+                    <Image
+                        src={API_GET_SPRITE_FRONT(pid)}
+                        fallback={API_GET_SPRITE_FRONT('default/0')}
+                        className='front'
+                        alt={`Image of ${name} pokemon.`} />
+                    <div className='name'>{name}</div>
+                </div>
+            ];
+
+            if (index < list.length - 1) {
+                jsx.push(<div className='arrow-right' key={'arrow-' + index}></div>);
+            }
+
+
+            return jsx;
+        });
+    }
 
     render = () => {
-        const { id, loading = true, chain, error, handleShowPokemon } = this.props;
+        const { loading = true, chain } = this.props;
 
         if (!chain) return null;
         else {
@@ -49,32 +76,7 @@ class PokemonEvolutionChain extends React.Component {
                     <h3>Evolution Chain</h3>
                     {loading && 'Loading...'}
                     {
-                        !loading && evolution.map(({ id: pid, name }, index, list) => {
-
-
-                            const jsx = [
-                                <div className={'link' + (handleShowPokemon && id !== pid ? ' interactive' : '')} key={index}
-                                    onClick={id !== pid ?
-                                        () => {
-                                            handleShowPokemon && handleShowPokemon(pid)
-                                        }
-                                        : null}>
-                                    <Image
-                                        src={API_GET_SPRITE_FRONT(pid)}
-                                        fallback={API_GET_SPRITE_FRONT('default/0')}
-                                        className='front'
-                                        alt={`Image of ${name} pokemon.`} />
-                                    <div className='name'>{name}</div>
-                                </div>
-                            ];
-
-                            if (index < list.length - 1) {
-                                jsx.push(<div className='arrow-right' key={'arrow-' + index}></div>);
-                            }
-
-
-                            return jsx;
-                        })
+                        !loading && this.renderChain(evolution)
                     }
                 </div>
             )
@@ -84,21 +86,10 @@ class PokemonEvolutionChain extends React.Component {
 
 PokemonEvolutionChain.propTypes = {
     id: PropTypes.number.isRequired,
-    handleShowPokemon: PropTypes.func
+    handleShowPokemon: PropTypes.func,
+    chain: PropTypes.object,
+    loading: PropTypes.bool,
+    error: PropTypes.object
 };
 
-const mapStateToProps = (state, props) => {
-    /* selectors evolution chain */
-
-    const evolutionChain = pokemonEvolutionChainSelector(state.evolution.dict, props.id);
-    return {
-        chain: evolutionChain,
-        loading: state.evolution.loading,
-        error: state.evolution.error
-    };
-}
-const mapDispatchToProps = (dispatch) => ({
-    pullEvolutionChain: (id) => dispatch(actionGetPokemonEvolutionChain(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonEvolutionChain);
+export default PokemonEvolutionChain;

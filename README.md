@@ -3,7 +3,7 @@ Sample React SPA with Redux and Router with Jest/Enzyme testing to get the RESTf
 
 ### Pokemon images
 To not abuse the pokeapi github account, you may want to clone their repo with images and put it in the `static` folder of the app.
-git clone https://github.com/LukaszGrela/react-pokemon-list.git
+`git clone https://github.com/PokeAPI/sprites.git`
 
 - /public/static/pokemon
 - /public/static/pokemon/back

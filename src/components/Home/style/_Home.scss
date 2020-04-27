@@ -1,0 +1,33 @@
+.Home {
+  header {
+    height: 4rem;
+    background-color: #e82323;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 2rem;
+      color: #fff;
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+  
+  footer {
+    background-color: #e82323;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

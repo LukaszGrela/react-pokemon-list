@@ -1,0 +1,85 @@
+/*
+----------------------------------------------------------------------------
+a11y.
+----------------------------------------------------------------------------
+*/
+@mixin visually-hide {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/*
+----------------------------------------------------------------------------
+Flexbox.
+----------------------------------------------------------------------------
+*/
+@mixin flex-simple(
+  $display: flex,
+  $direction: row,
+  $justify: space-between,
+  $align: initial,
+  $wrap: nowrap
+) {
+  align-items: $align;
+  display: $display;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+}
+
+/*
+----------------------------------------------------------------------------
+Selectable button.
+----------------------------------------------------------------------------
+*/
+@mixin selectable-button {
+  background: transparent;
+  border: solid 2px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+  height: rem(24);
+  margin-left: rem(8);
+  padding: 0;
+  transition: background-color $check-item-transition-time;
+  width: rem(24);
+
+  &_selected {
+    background-color: $bg-button-selected;
+  }
+}
+
+/*
+----------------------------------------------------------------------------
+Selectable button SVG.
+----------------------------------------------------------------------------
+*/
+@mixin selectable-button-svg {
+  display: block;
+  height: rem(16);
+  margin: calc(0.25rem - 2px);
+  width: rem(16);
+
+  polyline {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 41.79021072387695;
+    stroke-dashoffset: 41.79021072387695;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 5px;
+    transition: all $check-item-transition-time;
+  }
+
+  &_checked {
+    polyline {
+      stroke-dashoffset: 0;
+    }
+  }
+}

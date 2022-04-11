@@ -2,6 +2,8 @@ import React from 'react';
 import { Image } from '../Image'
 import { API_GET_SPRITE_FRONT } from '../../api';
 
+import './style/index.scss';
+
 export interface IProps {
   pid: string;
   name: string;
@@ -26,7 +28,7 @@ const PokemonListItem: React.FC<IProps> = ({
         fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
 
         alt={`Image of ${name} pokemon.`}
-        className="PokemonLiostItem_image"
+        className="PokemonListItem_image"
       />
 
       <div className='PokemonListItem_name'>{name}</div>

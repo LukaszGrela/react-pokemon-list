@@ -1,8 +1,9 @@
 import React, { useEffect, useState, ReactNode } from 'react';
 import { getPokemonList, parseIdFromUrl } from '../../api';
 import { INamedAPIResource, IAPIResourceList } from '../../store/model/pokemon';
-import PokemonListItem from './PokemonListItem';
+import PokemonListItem from '../PokemonListItem/PokemonListItem';
 
+import './style/index.scss';
 export interface IProps {
   page: number;
 }

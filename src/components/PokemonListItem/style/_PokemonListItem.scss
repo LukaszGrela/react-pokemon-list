@@ -1,3 +1,28 @@
 .PokemonListItem {
     list-style: none;
+    margin: 1rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    vertical-align: bottom;
+    width: 10.4rem;
+    height: 12.9rem;
+
+    @include shadow-1;
+
+    &_name {
+        text-transform: capitalize;
+        font-family: sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0.4rem 0;
+        margin-bottom: 0.8rem;
+        width: 10.4rem;
+    }
+
+    &_image {
+        width: 9.6rem;
+        height: 9.6rem;
+        margin: 0.4rem;
+        image-rendering: pixelated;
+    }
 }

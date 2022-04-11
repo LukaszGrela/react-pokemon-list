@@ -1,4 +1,8 @@
 .PokemonList {
     padding-top: $header-height;
     padding-bottom: $footer-height;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

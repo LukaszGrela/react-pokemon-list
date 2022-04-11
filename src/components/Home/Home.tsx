@@ -11,7 +11,7 @@ const Home: React.FC = (): JSX.Element => {
       <header>
         <h1>Pokémon List</h1>
       </header>
-      <PokemonList page={page ? parseInt(page) : 1} />
+      <PokemonList page={page ? parseInt(page) : 1} interactive />
       <footer>{page}</footer>
     </main>
   );

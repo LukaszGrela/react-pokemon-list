@@ -5,4 +5,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    &.interactive {
+        .PokemonListItem {
+            cursor: pointer;
+            &:hover {
+                position: relative;
+                .PokemonListItem_image {
+                    position: relative;
+                    top: -2px;
+                    left: -2px;
+                    @include png-shadow-2;
+                }
+            }
+        }
+    }
 }

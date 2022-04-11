@@ -6,6 +6,8 @@ import PokemonListItem from '../PokemonListItem/PokemonListItem';
 import './style/index.scss';
 export interface IProps {
   page: number;
+
+  interactive: boolean;
 }
 
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
@@ -37,9 +39,9 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
 
   return (
     <>
-      {loading && <div className='PokemonList'>Loading...</div>}
+      {loading && <div className='PokemonList PokemonList_loading'>Loading...</div>}
       {!loading && (
-        <ul className='PokemonList'>
+        <ul className='PokemonList interactive'>
           {results.map(
             (resource: INamedAPIResource, i): ReactNode => {
               console.log(resource)

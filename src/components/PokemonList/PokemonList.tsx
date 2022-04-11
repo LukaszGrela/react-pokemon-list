@@ -12,10 +12,10 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<INamedAPIResource[]>([]);
 
-  useEffect((): (() => void) => {
+  useEffect(() => {
     setLoading(true);
-    const { signal, abort } = new AbortController();
-    fetch(getPokemonList(page), { signal })
+    const abortController = new AbortController();
+    fetch(getPokemonList(page), { signal: abortController.signal })
       .then((r) => r.json())
       .then((data: IAPIResourceList) => {
         console.log(data);
@@ -30,7 +30,7 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
         setLoading(false);
       });
     return () => {
-      abort();
+      abortController.abort();
     };
   }, [page]);
 
@@ -41,12 +41,16 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
         <ul className='PokemonList'>
           {results.map(
             (resource: INamedAPIResource, i): ReactNode => {
+              console.log(resource)
+              const key = resource.url;
               return (
                 <PokemonListItem
-                  key={i + (page - 1) * 20 + 1}
+                  key={key}
                   pid={`${parseIdFromUrl(resource.url) || ''}`}
                   name={resource.name}
-                  n={i + (page - 1) * 20 + 1}
+                  onClick={(pid: string) => {
+                    console.log("clicked on", pid)
+                  }}
                 />
               );
             }

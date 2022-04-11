@@ -1,31 +1,33 @@
 import React from 'react';
+import { Image } from '../Image'
+import { API_GET_SPRITE_FRONT } from '../../api';
 
 export interface IProps {
-  n: number;
   pid: string;
   name: string;
+  onClick: (pid: string) => void
 }
 
 const PokemonListItem: React.FC<IProps> = ({
-  n,
   pid,
   name,
+  onClick
 }: IProps): JSX.Element => {
   return (
     <li
       className='PokemonListItem'
       onClick={() => {
-        window.location.hash = `/item/${pid}`;
-        console.log(window.location.hash);
+        onClick(pid)
       }}
     >
-      <span className='number'>#{n}</span>
 
-      {/* <Image
-    src={API_GET_SPRITE_FRONT(pid)}
-    fallback={API_GET_SPRITE_FRONT('default/0')}
-    ref="Image"
-    alt={`Image of ${name} pokemon.`} /> */}
+      <Image
+        src={API_GET_SPRITE_FRONT(pid)}
+        fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
+
+        alt={`Image of ${name} pokemon.`}
+        className="PokemonLiostItem_image"
+      />
 
       <div className='PokemonListItem_name'>{name}</div>
     </li>

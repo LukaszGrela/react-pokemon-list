@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Pokemon resources
 public/static/pokemon/**/*.*
+
+# tmp
+/src-copy

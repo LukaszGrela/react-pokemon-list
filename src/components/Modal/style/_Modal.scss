@@ -1,0 +1,65 @@
+.Modal {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateZ(0); /* Force hardware acceleration on old Android devices*/
+    transition: transform 250ms, opacity 250ms;
+
+    &_overlay {
+        background-color: $modal-background;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transition: transform 250ms, opacity 250ms;
+        &_transition-enter,
+        &_transition-exit {
+            opacity: 0;
+        }
+
+        &_transition-enter.Modal_overlay_transition-enter-active {
+            opacity: 0.25;
+        }
+    }
+
+    &_inner {
+        background: $background;
+        border-radius: 0 2rem 0 0;
+        bottom: 0;
+        box-shadow: 0rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
+        left: 0;
+        max-height: 100%;
+        overflow-y: hidden;
+        padding: 2rem;
+        pointer-events: all;
+        position: absolute;
+        width: 100%;
+
+        .LoadingScreen {
+            height: 8rem;
+            position: relative;
+        }
+    }
+
+    &_transition-enter,
+    &_transition-exit {
+        opacity: 0;
+        transform: translateY(100vh) translateZ(0);
+        transition-timing-function: ease-in;
+    }
+
+    &_transition-enter.Modal_transition-enter-active,
+    &_transition-enter-done {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+        transition-timing-function: ease-out;
+    }
+}

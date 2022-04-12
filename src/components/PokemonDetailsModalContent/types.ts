@@ -4,6 +4,7 @@ interface IModalContent {
 
   closeModal?: () => void;
 }
-export interface IProps extends IModalContent {
+export interface IProps extends Omit<IModalContent, 'title'> {
   pid: string;
+  name: string;
 }

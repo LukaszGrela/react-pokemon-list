@@ -5,7 +5,7 @@ import { IProps } from "./types";
 
 
 const PokemonDetailsModalContent: React.FC<IProps> = ({
-  modalId, pid, title, closeModal
+  modalId, pid, name, closeModal
 }): JSX.Element => {
   return <div className="PokemonDetailsModalContent">
     <header className="PokemonDetailsModalContent_header">
@@ -13,7 +13,7 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
         id={`modal-${modalId}-title`}
         className="PokemonDetailsModalContent_title"
       >
-        {title}
+        {`Details of ${name}`}
       </h2>
     </header>
     <section className="PokemonDetailsModalContent_body">
@@ -24,12 +24,12 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
               src={API_GET_SPRITE_FRONT(pid)}
               fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
               className='front'
-              alt={`Image of ${title} pokemon.`} />
+              alt={`Image of ${name} pokemon.`} />
             <Image
               src={API_GET_SPRITE_BACK(pid)}
               fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
               className='back'
-              alt={`Image of the back of the ${title} pokemon.`} />
+              alt={`Image of the back of the ${name} pokemon.`} />
           </div>
         </div>
       </div>

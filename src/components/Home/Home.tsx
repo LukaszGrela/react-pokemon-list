@@ -31,7 +31,7 @@ const Home: React.FC = (): JSX.Element => {
           setShowModal(null)
         }}
       ><PokemonDetailsModalContent modalId={modalId}
-        pid={showModal?.pid || ''} title={showModal?.name ? `Details of ${showModal.name}` : ''} closeModal={() => {
+        pid={showModal?.pid || ''} name={showModal?.name || ''} closeModal={() => {
           setShowModal(null)
         }} /></Modal>
     </main>

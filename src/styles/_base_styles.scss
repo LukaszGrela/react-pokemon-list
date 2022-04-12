@@ -1,11 +1,19 @@
 @import './base/css_reset';
 
 /* stylelint-disable selector-max-id, declaration-no-important*/
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+}
 html,
 body,
 #root {
   height: 100%;
   user-select: none;
+  font-family: sans-serif;
 }
 
 // a11y helper

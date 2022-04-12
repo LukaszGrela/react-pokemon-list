@@ -1,20 +1,15 @@
-import { createBrowserHistory, History } from 'history';
+import { createBrowserHistory } from 'history';
 import { combineReducers, Reducer, AnyAction } from 'redux';
-import {
-  LocationChangeAction,
-  connectRouter,
-  RouterState,
-} from 'connected-react-router';
+import { createReduxHistoryContext, RouterActions, RouterState } from "redux-first-history";
 
-export const history = createBrowserHistory({
-  // basename: '/', // The base URL of the app (see below)
-  //   forceRefresh: false,      // Set true to force full page refreshes
-  //   keyLength: 6,             // The length of location.key
-  //   // A function to use to confirm navigation with the user (see below)
-  //   getUserConfirmation: (message, callback) => callback(window.confirm(message))
+
+export const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
+  history: createBrowserHistory(),
+  //other options if needed 
+  reduxTravelling: true,
 });
 
-type TAction = AnyAction & LocationChangeAction;
+type TAction = AnyAction & RouterActions;
 export type TRootReducer = Reducer<
   {
     router: RouterState;
@@ -22,9 +17,11 @@ export type TRootReducer = Reducer<
   TAction
 >;
 
-const createRootReducer = (history: History): TRootReducer =>
+const createRootReducer = (): TRootReducer =>
   combineReducers({
-    router: connectRouter(history),
+    router: routerReducer,
   });
 
-export const rootReducer = createRootReducer(history);
+export const rootReducer = createRootReducer();
+
+

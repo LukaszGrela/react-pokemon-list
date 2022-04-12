@@ -9,7 +9,7 @@ export interface IProps {
 
   interactive: boolean;
 
-  handlePokemonSelect: (pid: string) => void;
+  handlePokemonSelect: (pid: string, name: string) => void;
 }
 
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
@@ -53,7 +53,7 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
                   key={key}
                   pid={`${parseIdFromUrl(resource.url) || ''}`}
                   name={resource.name}
-                  onClick={handlePokemonSelect}
+                  onClick={(pid) => handlePokemonSelect(pid, resource.name)}
                 />
               );
             }

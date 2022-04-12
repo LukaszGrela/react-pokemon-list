@@ -1,15 +1,16 @@
+@import './base/css_reset';
+
 /* stylelint-disable selector-max-id, declaration-no-important*/
 html,
 body,
 #root {
-	height: 100%;
-	user-select: none;
+  height: 100%;
+  user-select: none;
 }
-
 
 // a11y helper
 .is-a11y {
-	@include visually-hide;
+  @include visually-hide;
 }
 
 /* stylelint-enable selector-max-id, declaration-no-important*/

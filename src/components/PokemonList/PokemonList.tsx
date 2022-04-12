@@ -8,10 +8,12 @@ export interface IProps {
   page: number;
 
   interactive: boolean;
+
+  handlePokemonSelect: (pid: string) => void;
 }
 
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
-  const { page } = props;
+  const { page, interactive, handlePokemonSelect } = props;
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<INamedAPIResource[]>([]);
 
@@ -41,9 +43,9 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
     <>
       {loading && <div className='PokemonList PokemonList_loading'>Loading...</div>}
       {!loading && (
-        <ul className='PokemonList interactive'>
+        <ul className={`PokemonList${interactive ? ' interactive' : ''}`}>
           {results.map(
-            (resource: INamedAPIResource, i): ReactNode => {
+            (resource: INamedAPIResource): ReactNode => {
               console.log(resource)
               const key = resource.url;
               return (
@@ -51,9 +53,7 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
                   key={key}
                   pid={`${parseIdFromUrl(resource.url) || ''}`}
                   name={resource.name}
-                  onClick={(pid: string) => {
-                    console.log("clicked on", pid)
-                  }}
+                  onClick={handlePokemonSelect}
                 />
               );
             }

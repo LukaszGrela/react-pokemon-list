@@ -1,3 +1,7 @@
+:root {
+    --transition-time: 300ms;
+}
+
 .Modal {
     align-items: center;
     bottom: 0;
@@ -10,7 +14,7 @@
     right: 0;
     top: 0;
     transform: translateZ(0); /* Force hardware acceleration on old Android devices*/
-    transition: transform 250ms, opacity 250ms;
+    transition: transform var(--transition-time), opacity var(--transition-time);
 
     &_overlay {
         background-color: $modal-background;
@@ -19,7 +23,7 @@
         position: fixed;
         right: 0;
         top: 0;
-        transition: transform 250ms, opacity 250ms;
+        transition: transform var(--transition-time), opacity var(--transition-time);
         &_transition-enter,
         &_transition-exit {
             opacity: 0;

@@ -2,6 +2,8 @@ import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Portal from '../Portal/Portal';
 import type { IProps } from './types';
+import { getCSSVar } from '../../utils/getCSSVar';
+import { getCSSTimeUnit } from '../../utils/getCSSTimeUnit';
 
 import './style/index.scss';
 
@@ -16,7 +18,7 @@ class Modal extends React.Component<IProps> {
   render() {
     const {
       isOpen = false,
-      modalTransitionTimeout = 0,
+      modalTransitionTimeout = getCSSTimeUnit(getCSSVar('transition-time'), 0),
       modalId = 'default-modal-id',
       disableOverlay = false,
     } = this.props;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, ReactNode } from 'react';
 import { getPokemonList, parseIdFromUrl } from '../../api';
-import { INamedAPIResource, IAPIResourceList } from '../../store/model/pokemon';
+import type { TNamedAPIResource } from '../../store/model/common';
+import type { IAPIResourceList } from '../../store/model/pokemon-list';
 import PokemonListItem from '../PokemonListItem/PokemonListItem';
 
 import './style/index.scss';
@@ -15,7 +16,7 @@ export interface IProps {
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
   const { page, interactive, handlePokemonSelect } = props;
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<INamedAPIResource[]>([]);
+  const [results, setResults] = useState<TNamedAPIResource[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -45,7 +46,7 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
       {!loading && (
         <ul className={`PokemonList${interactive ? ' interactive' : ''}`}>
           {results.map(
-            (resource: INamedAPIResource): ReactNode => {
+            (resource: TNamedAPIResource): ReactNode => {
               console.log(resource)
               const key = resource.url;
               return (

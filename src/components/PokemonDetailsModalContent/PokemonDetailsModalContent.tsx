@@ -1,7 +1,8 @@
 import { useGetPokemonByNameOrIdQuery } from '../../store/services/pokemon-details';
 import { capitalise } from '../../utils/capitalise';
-import Spinner from '../Spinner/Spinner';
 import { IProps } from './types';
+import InfiniteLoaderBar from '../InfiniteLoaderBar/InfiniteLoaderBar';
+import './style/index.scss'
 
 const PokemonDetailsModalContent: React.FC<IProps> = ({
   modalId,
@@ -22,9 +23,9 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
         >
           {isLoading ? `Loading of ${capitaliseName}` : `Details of ${capitaliseName}`}
         </h2>
+        {isLoading && <InfiniteLoaderBar />}
       </header>
       <section className='PokemonDetailsModalContent_body'>
-        {isLoading && <Spinner />}
         {!isLoading && error && <p>{`${error}`}</p>}
         {!isLoading && !error && data && <>
           <div className='pokemon-weight'>

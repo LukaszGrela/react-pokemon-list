@@ -1,0 +1,21 @@
+.Modal {
+    min-width: 32rem;
+    max-width: 66.7rem;
+}
+
+.PokemonDetailsModalContent {
+    &_header {
+        padding: 1rem 0;
+        position: relative;
+    }
+    &_title {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    &_body {
+        min-height: 10rem;
+        font-size: 1.4rem;
+    }
+    &_footer {
+    }
+}

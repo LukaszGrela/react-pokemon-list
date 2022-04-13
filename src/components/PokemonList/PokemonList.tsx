@@ -1,7 +1,7 @@
-import React, { useEffect, useState, ReactNode } from 'react';
-import { getPokemonList, parseIdFromUrl } from '../../api';
+import React, { ReactNode } from 'react';
+import { PAGINATION, parseIdFromUrl } from '../../api';
 import type { TNamedAPIResource } from '../../store/model/common';
-import type { IAPIResourceList } from '../../store/model/pokemon-list';
+import { useGetPokemonsListQuery } from '../../store/services/pokemons-list';
 import PokemonListItem from '../PokemonListItem/PokemonListItem';
 
 import './style/index.scss';
@@ -15,37 +15,14 @@ export interface IProps {
 
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
   const { page, interactive, handlePokemonSelect } = props;
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<TNamedAPIResource[]>([]);
-
-  useEffect(() => {
-    setLoading(true);
-    const abortController = new AbortController();
-    fetch(getPokemonList(page), { signal: abortController.signal })
-      .then((r) => r.json())
-      .then((data: IAPIResourceList) => {
-        console.log(data);
-        setResults(data.results);
-      })
-      .catch((e: Error) => {
-        if (e.name !== 'AbortError') {
-          console.error(e);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    return () => {
-      abortController.abort();
-    };
-  }, [page]);
+  const { data: results, error, isLoading: loading, } = useGetPokemonsListQuery(PAGINATION(page));
 
   return (
     <>
       {loading && <div className='PokemonList PokemonList_loading'>Loading...</div>}
       {!loading && (
         <ul className={`PokemonList${interactive ? ' interactive' : ''}`}>
-          {results.map(
+          {results?.results.map(
             (resource: TNamedAPIResource): ReactNode => {
               console.log(resource)
               const key = resource.url;

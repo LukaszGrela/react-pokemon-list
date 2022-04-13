@@ -1,29 +1,21 @@
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { TStore } from './types';
+import { configureStore } from '@reduxjs/toolkit'
 import { rootReducer, createReduxHistory, routerMiddleware } from './root-reducer';
+import { pokemonDetails } from './services/pokemon-details';
+import { pokemonsList } from './services/pokemons-list';
 
-const middleware = [
-  routerMiddleware,
-  thunk /*
-  catchAllErrorHandler,
-  unauthorisedErrorHandler, */,
-];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const enhancers: any[] = [];
-const composeEnhancers = composeWithDevTools({});
-
-const store: TStore = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(...middleware), ...enhancers)
-);
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: getDefaultMiddleware => getDefaultMiddleware()
+    .prepend(routerMiddleware)
+    .concat(pokemonsList.middleware, pokemonDetails.middleware)
+});
 
 export default store;
 
 // helper to get typed store
-export const getStore: () => TStore = (): TStore => store as TStore;
+export const getStore = () => store;
 
 
 export const history = createReduxHistory(store);

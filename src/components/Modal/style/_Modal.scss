@@ -45,7 +45,7 @@
         padding: 2rem;
         pointer-events: all;
         position: absolute;
-        width: 100%;
+        width: calc(100% - 2rem - 2rem);
 
         .LoadingScreen {
             height: 8rem;

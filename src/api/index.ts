@@ -2,8 +2,6 @@ export const API_GATEWAY = 'https://pokeapi.co/api/v2/';
 
 export const API_LIST_POKEMON = 'pokemon/';
 
-export const getPokemonDetail = (id: string): string =>
-  `${API_GATEWAY}${API_LIST_POKEMON + id}`;
 export const getEvolutionChain = (id: string): string =>
   `${API_GATEWAY}evolution-chain/${id}`;
 

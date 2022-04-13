@@ -1,0 +1,50 @@
+@keyframes caterpillar {
+    0% {
+        left: 0%;
+        right: 100%;
+        width: 0%;
+    }
+    10% {
+        left: 0%;
+        right: 75%;
+        width: 10%;
+    }
+    50% {
+        left: 25%;
+        right: 75%;
+        width: 50%;
+    }
+    90% {
+        right: 0%;
+        left: 85%;
+        width: 10%;
+    }
+    100% {
+        left: 100%;
+        right: 0%;
+        width: 0%;
+    }
+}
+
+.InfiniteLoaderBar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: relative;
+    padding: 1px;
+    margin: 1.25rem 0;
+    background: $secondary;
+
+    &_bar {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        bottom: 0;
+        left: 0;
+        background: $pokemon-red;
+        width: 0;
+
+        animation: caterpillar 4s linear infinite;
+    }
+}

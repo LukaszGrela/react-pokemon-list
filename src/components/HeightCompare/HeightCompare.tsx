@@ -1,6 +1,6 @@
 import React from 'react';
 import SilhouetteImage from '../SilhouetteImage/SilhouetteImage';
-import StandingMan from './StandingMan';
+import StandingMan from '../StandingMan/StandingMan';
 
 import './style/index.scss';
 

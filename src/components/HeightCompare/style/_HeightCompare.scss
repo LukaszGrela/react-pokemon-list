@@ -1,4 +1,8 @@
 .HeightCompare {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    height: 20rem;
+    align-items: baseline;
 }

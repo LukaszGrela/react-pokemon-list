@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './style/index.scss';
 /**
  * Pitr - CC0 - Wikimedia Commons
  */

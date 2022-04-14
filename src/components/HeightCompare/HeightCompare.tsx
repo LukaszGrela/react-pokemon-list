@@ -18,11 +18,19 @@ export interface IProps {
   height: number;
 }
 
-const HeightCompare: React.FC<IProps> = ({ src }): JSX.Element => {
+const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height }): JSX.Element => {
+  const heightMax = Math.max(baseHeight, height);
+  const heightMin = Math.min(baseHeight, height);
+  const scale = (heightMin / heightMax) * 100;
+
   return (
     <div className='HeightCompare'>
-      <StandingMan />
-      <SilhouetteImage src={src} />
+      <div style={{ height: baseHeight > height ? '100%' : `${scale}%` }}>
+        <StandingMan />
+      </div>
+      <div style={{ height: baseHeight < height ? '100%' : `${scale}%` }}>
+        <SilhouetteImage src={src} />
+      </div>
     </div>
   );
 };

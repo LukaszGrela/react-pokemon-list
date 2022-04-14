@@ -51,10 +51,233 @@ export interface IPokemonDetail extends TNamedIdResource {
    * The species this Pokémon belongs to.
    * NamedAPIResource to (TPokemonSpecies)
    */
-  species	:TNamedAPIResource;
+  species: TNamedAPIResource;
 
+  /**
+   * A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at PokeAPI/sprites
+   */
+  sprites: TPokemonSprites & { versions: TVersionsPokemonSprites } & {
+    other: TOtherPokemonSprites;
+  };
+
+  /**
+   * A list of base stat values for this Pokémon.
+   */
+  stats: TPokemonStat[];
+  /**
+   * A list of details showing types this pokémon had in previous generations
+   */
+  past_types: TPokemonTypePast[];
+  /**
+   * A list of details showing types this Pokémon has.
+   */
+  types: TPokemonType[];
 }
+
+export type TVersionGameIndex = {
+  /**
+   * The internal id of an API resource within game data.
+   */
+  game_index: number;
+
+  /**
+   * The version relevent to this game index.
+   * TNamedAPIResource to TVersion
+   */
+  version: TNamedAPIResource;
+};
+
+export type TPokemonAbility = {
+  /**
+   * Whether or not this is a hidden ability.
+   */
+  is_hidden: boolean;
+  /**
+   * The slot this ability occupies in this Pokémon species.
+   */
+  slot: number;
+  /**
+   * The ability the Pokémon may have.
+   * TNamedAPIResource to TAbility
+   */
+  ability: TNamedAPIResource;
+};
+
+export type TPokemonType = {
+  /**
+   * The order the Pokémon's types are listed in.
+   */
+  slot: number;
+  /**
+   * The type the referenced Pokémon has.
+   */
+  type: TNamedAPIResource; // (Type)
+};
+
+export type TPokemonTypePast = {
+  /**
+   * The last generation in which the referenced pokémon had the listed types.
+   * TNamedAPIResource o (Generation)
+   */
+  generation: TNamedAPIResource;
+
+  /**
+   * The types the referenced pokémon had up to and including the listed generation.
+   */
+  types: TPokemonType[];
+};
+
+export type TPokemonHeldItem = {
+  /**
+   * The item the referenced Pokémon holds. NamedAPIResource (Item)
+   */
+  item: TNamedAPIResource;
+  /**
+   * The details of the different versions in which the item is held.
+   */
+  version_details: TPokemonHeldItemVersion[];
+};
+
+export type TPokemonHeldItemVersion = {
+  /**
+   * The version in which the item is held.
+   * TNamedAPIResource to TVersion
+   */
+  version: TNamedAPIResource;
+  /**
+   * How often the item is held.
+   */
+  rarity: number;
+};
+
+export type TPokemonMove = {
+  /**
+   * The move the Pokémon can learn.
+   * TNamedAPIResource to TMove
+   */
+  move: TNamedAPIResource;
+  /**
+   * The details of the version in which the Pokémon can learn the move.
+   */
+  version_group_details: TPokemonMoveVersion[];
+};
+
+export type TPokemonMoveVersion = {
+  /**
+   * The method by which the move is learned.
+   * TNamedAPIResource to (MoveLearnMethod)
+   */
+  move_learn_method: TNamedAPIResource;
+  /**
+   * The version group in which the move is learned.
+   * NamedAPIResource (VersionGroup)
+   */
+  version_group: TNamedAPIResource;
+  /**
+   * The minimum level to learn the move.
+   */
+  level_learned_at: number;
+};
+
+export type TPokemonStat = {
+  /**
+   * The stat the Pokémon has.
+   * TNamedAPIResource of (Stat)
+   */
+  stat: TNamedAPIResource;
+  /**
+   * The effort points (EV) the Pokémon has in the stat.
+   */
+  effort: number;
+
+  /**
+   * The base value of the stat.
+   */
+  base_stat: number;
+};
+
+export type TPokemonSprites = {
+  /**
+   * The default depiction of this Pokémon from the front in battle.
+   */
+  front_default: string;
+  /**
+   * The shiny depiction of this Pokémon from the front in battle.
+   */
+  front_shiny?: string | null;
+  /**
+   * The female depiction of this Pokémon from the front in battle.
+   */
+  front_female?: string | null;
+  /**
+   * The shiny female depiction of this Pokémon from the front in battle.
+   */
+  front_shiny_female?: string | null;
+  /**
+   * The default depiction of this Pokémon from the back in battle.
+   */
+  back_default?: string | null;
+  /**
+   * The shiny depiction of this Pokémon from the back in battle.
+   */
+  back_shiny?: string | null;
+  /**
+   * The female depiction of this Pokémon fropokemonm the back in battle.
+   */
+  back_female?: string | null;
+  /**
+   * The shiny female depiction of this Pokémon from the back in battle.
+   */
+  back_shiny_female?: string | null;
+
+  front_gray?: string | null;
+  back_gray?: string | null;
+};
+
+export type TVersionsPokemonSprites = {
+  'generation-i': {
+    'red-blue': TPokemonSprites;
+    yellow: TPokemonSprites;
+  };
+  'generation-ii': {
+    crystal: TPokemonSprites;
+    gold: TPokemonSprites;
+    silver: TPokemonSprites;
+  };
+  'generation-iii': {
+    emerald: TPokemonSprites;
+    'firered-leafgreen': TPokemonSprites;
+    'ruby-sapphire': TPokemonSprites;
+  };
+  'generation-iv': {
+    'diamond-pearl': TPokemonSprites;
+    'heartgold-soulsilver': TPokemonSprites;
+    platinum: TPokemonSprites;
+  };
+  'generation-v': {
+    'black-white': TPokemonSprites & { animated: TPokemonSprites };
+  };
+  'generation-vi': {
+    'omegaruby-alphasapphire': TPokemonSprites;
+    'x-y': TPokemonSprites;
+  };
+  'generation-vii': {
+    icons: TPokemonSprites;
+    'ultra-sun-ultra-moon': TPokemonSprites;
+  };
+  'generation-viii': {
+    icons: TPokemonSprites;
+  };
+};
+
+export type TOtherPokemonSprites = {
+  dream_world: TPokemonSprites;
+  home: TPokemonSprites;
+  'official-artwork': TPokemonSprites;
+};
+
 /*
+// example IPokemonDetail
 const a: IPokemonDetail = {
   id: 35,
   name: 'clefairy',
@@ -399,188 +622,4 @@ const a: IPokemonDetail = {
     },
   ],
 };
-*/
-export type TVersionGameIndex = {
-  /**
-   * The internal id of an API resource within game data.
-   */
-  game_index: number;
-
-  /**
-   * The version relevent to this game index.
-   * TNamedAPIResource to TVersion
-   */
-  version: TNamedAPIResource;
-};
-/*
-
-past_types	
-A list of details showing types this pokémon had in previous generations
-
-PokemonTypePast[]
-sprites	
-A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at PokeAPI/sprites
-
-PokemonSprites
-
-stats	
-A list of base stat values for this Pokémon.
-
-PokemonStat[]
-types	
-A list of details showing types this Pokémon has.
-
-PokemonType[]
-*/
-export type TPokemonAbility = {
-  /**
-   * Whether or not this is a hidden ability.
-   */
-  is_hidden: boolean;
-  /**
-   * The slot this ability occupies in this Pokémon species.
-   */
-  slot: number;
-  /**
-   * The ability the Pokémon may have.
-   * TNamedAPIResource to TAbility
-   */
-  ability: TNamedAPIResource;
-};
-
-/*
-PokemonType (type)
-Name	Description	Type
-slot	
-The order the Pokémon's types are listed in.
-
-integer
-type	
-The type the referenced Pokémon has.
-
-NamedAPIResource (Type)
-PokemonFormType (type)
-Name	Description	Type
-slot	
-The order the Pokémon's types are listed in.
-
-integer
-type	
-The type the referenced Form has.
-
-NamedAPIResource (Type)
-PokemonTypePast (type)
-Name	Description	Type
-generation	
-The last generation in which the referenced pokémon had the listed types.
-
-NamedAPIResource (Generation)
-types	
-The types the referenced pokémon had up to and including the listed generation.
-
-PokemonType[]
-*/
-export type TPokemonHeldItem = {
-  /**
-   * The item the referenced Pokémon holds. NamedAPIResource (Item)
-   */
-  item: TNamedAPIResource;
-  /**
-   * The details of the different versions in which the item is held.
-   */
-  version_details: TPokemonHeldItemVersion[];
-};
-
-export type TPokemonHeldItemVersion = {
-  /**
-   * The version in which the item is held.
-   * TNamedAPIResource to TVersion
-   */
-  version: TNamedAPIResource;
-  /**
-   * How often the item is held.
-   */
-  rarity: number;
-};
-
-export type TPokemonMove = {
-  /**
-   * The move the Pokémon can learn.
-   * TNamedAPIResource to TMove
-   */
-  move: TNamedAPIResource;
-  /**
-   * The details of the version in which the Pokémon can learn the move.
-   */
-  version_group_details: TPokemonMoveVersion[];
-};
-
-export type TPokemonMoveVersion = {
-  /**
-   * The method by which the move is learned.
-   * TNamedAPIResource to (MoveLearnMethod)
-   */
-  move_learn_method: TNamedAPIResource;
-  /**
-   * The version group in which the move is learned.
-   * NamedAPIResource (VersionGroup)
-   */
-  version_group: TNamedAPIResource;
-  /**
-   * The minimum level to learn the move.
-   */
-  level_learned_at: number;
-};
-/*
-PokemonStat (type)
-Name	Description	Type
-stat	
-The stat the Pokémon has.
-*/
-/*
-NamedAPIResource (Stat)
-effort	
-The effort points (EV) the Pokémon has in the stat.
-
-integer
-base_stat	
-The base value of the stat.
-
-integer
-*/
-/*
-PokemonSprites (type)
-Name	Description	Type
-front_default	
-The default depiction of this Pokémon from the front in battle.
-
-string
-front_shiny	
-The shiny depiction of this Pokémon from the front in battle.
-
-string
-front_female	
-The female depiction of this Pokémon from the front in battle.
-
-string
-front_shiny_female	
-The shiny female depiction of this Pokémon from the front in battle.
-
-string
-back_default	
-The default depiction of this Pokémon from the back in battle.
-
-string
-back_shiny	
-The shiny depiction of this Pokémon from the back in battle.
-
-string
-back_female	
-The female depiction of this Pokémon fropokemonm the back in battle.
-
-string
-back_shiny_female	
-The shiny female depiction of this Pokémon from the back in battle.
-
-string
 */

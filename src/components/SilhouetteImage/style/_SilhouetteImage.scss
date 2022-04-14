@@ -1,8 +1,5 @@
 .SilhouetteImage {
-  background-color: black;
-  mask-repeat: no-repeat;
-
-  &_silhouette {
-    visibility: hidden;
-  }
+    &_silhouette {
+        position: relative;
+    }
 }

@@ -11,6 +11,9 @@ To not abuse the pokeapi github account, you may want to clone their repo with i
 ## Evolution Chain
 Currently the https://pokeapi.co provides broken data of the evolution chains, which means that you can't see valid chains for selected pokemon. Also for simplicity I'm taking only first item of the `evolves_to` array. e.g. eevee can evolve into 8 different pokemons but I'm displaying only one.
 
+## Tools
+Make sure you have installed [Volta](http://volta.sh/) which ensures you have the right version of node and npm for this project.
+
 ## React
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

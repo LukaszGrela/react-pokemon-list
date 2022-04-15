@@ -55,5 +55,9 @@
     "devDependencies": {
         "@types/react-transition-group": "^4.4.4",
         "prettier": "^2.6.2"
+    },
+    "volta": {
+        "node": "16.14.2",
+        "npm": "8.7.0"
     }
 }

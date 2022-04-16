@@ -14,7 +14,6 @@ export const trim = (
     b = -1,
     l = -1;
   topTrim: for (let y = 0; y < height; y++) {
-    t = y;
     for (let x = 0; x < width; x++) {
       const pos = y * width + x;
       if (
@@ -25,20 +24,17 @@ export const trim = (
           imageData.data[pos * 4 + ERGBADataIndex.A],
         ])
       ) {
+        t = y;
         break topTrim;
       }
     }
   }
-
-  console.log('t', t);
-  if (t === height - 1) {
-    // bail out, as it means we went through all pixels
+  if (t === -1) {
+    // went through all pixels, hasn't stop
     return new Rect(0, 0, 0, 0);
-    //
   }
 
-  rightTrim: for (let x = width; --x >= 0; ) {
-    r = x;
+  rightTrim: for (let x = width; --x >= 0;) {
     for (let y = t; y < height; y++) {
       const pos = y * width + x;
       if (
@@ -49,19 +45,15 @@ export const trim = (
           imageData.data[pos * 4 + ERGBADataIndex.A],
         ])
       ) {
+        r = x + 1;
         break rightTrim;
       }
     }
   }
-  console.log('r', r);
-  if (r === 0) {
-    // bail out we've scanned from right to left
-    return new Rect(0, width, t, 0);
-  }
+  if (r === -1) r = width;
 
-  bottomTrim: for (let y = height; --y >= t; ) {
-    b = y;
-    for (let x = r; --x >= 0; ) {
+  bottomTrim: for (let y = height; --y >= t;) {
+    for (let x = r; --x >= 0;) {
       const pos = y * width + x;
       if (
         threshold(x, y, [
@@ -71,17 +63,16 @@ export const trim = (
           imageData.data[pos * 4 + ERGBADataIndex.A],
         ])
       ) {
+        b = y + 1;
         break bottomTrim;
       }
     }
   }
-
-  console.log('b', b);
   if (b === -1) b = height;
 
+
   leftTrim: for (let x = 0; x < r; x++) {
-    l = x;
-    for (let y = b; --y >= t; ) {
+    for (let y = b; --y >= t;) {
       const pos = y * width + x;
       if (
         threshold(x, y, [
@@ -91,12 +82,11 @@ export const trim = (
           imageData.data[pos * 4 + ERGBADataIndex.A],
         ])
       ) {
+        l = x;
         break leftTrim;
       }
     }
   }
-  console.log('l', l);
-
   if (l === -1) l = 0;
 
   return new Rect(t, r, b, l);

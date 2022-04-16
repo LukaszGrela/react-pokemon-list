@@ -4,4 +4,5 @@ export type TPathToPNG = string;
 export interface IProps {
   src: TPathToPNG;
   color?: TRGB;
+  onError?: (error: unknown) => void;
 }

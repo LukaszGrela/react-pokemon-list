@@ -26,7 +26,8 @@ const useCanvas = (
   url: TPathToPNG,
   crop: boolean = false,
   color: TRGB = Number.MIN_SAFE_INTEGER,
-  thresholdColor: TThresholdFunction = alphaThreshold
+  thresholdColor: TThresholdFunction = alphaThreshold,
+  errorHandler?: (error: unknown) => void
 ): React.RefObject<HTMLCanvasElement> => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const img = useMemo(() => new global.Image(), []);
@@ -92,16 +93,16 @@ const useCanvas = (
           context.putImageData(imageData, 0, 0);
         }
       };
-      img.onerror = console.error;
+      if (errorHandler) { img.onerror = errorHandler; }
     }
     return () => { };
-  }, [img, url, crop, color, thresholdColor]);
+  }, [img, url, crop, color, thresholdColor, errorHandler]);
 
   return canvasRef;
 };
 
-const SilhouetteImage: React.FC<IProps> = ({ src, color }: IProps): JSX.Element => {
-  const canvas2Ref = useCanvas(src, true, color);
+const SilhouetteImage: React.FC<IProps> = ({ src, color, onError }: IProps): JSX.Element => {
+  const canvas2Ref = useCanvas(src, true, color, alphaThreshold, onError);
 
   return (
     <div className='SilhouetteImage'>

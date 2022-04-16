@@ -1,24 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SilhouetteImage from '../SilhouetteImage/SilhouetteImage';
 import StandingMan from '../StandingMan/StandingMan';
+import { IProps } from './types';
 
 import './style/index.scss';
 
-type TPathToPokemonPNG = string;
-export interface IProps {
-  src: TPathToPokemonPNG;
-
-  /**
-   * Base height that incoming height is compared to (human)
-   */
-  baseHeight: number;
-  /**
-   * Incoming height to compare (pokemon)
-   */
-  height: number;
-}
-
-const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height }): JSX.Element => {
+const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height, title }): JSX.Element => {
+  const [error, setError] = useState(false);
   const heightMax = Math.max(baseHeight, height);
   const heightMin = Math.min(baseHeight, height);
   let scale = (heightMin / heightMax) * 100;
@@ -26,18 +14,21 @@ const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height }): JSX.Eleme
 
   if (scale < 17) {
     scale = 4 * Math.round(scale);
-    viewBox = '0 375 165.175 125'
+    viewBox = '0 300 160 85'
   }
 
   return (
-    <div className='HeightCompare'>
-      <div style={{ height: baseHeight > height ? '100%' : `${scale}%` }}>
-        <StandingMan viewBox={viewBox} />
+    !error ? <div className='HeightCompare'>
+      {title && <h3 className='HeightCompare_title'>{title}</h3>}
+      <div className='HeightCompare_wrapper'>
+        <div style={{ height: baseHeight > height ? '100%' : `${scale}%` }}>
+          <StandingMan viewBox={viewBox} />
+        </div>
+        <div style={{ height: baseHeight < height ? '100%' : `${scale}%` }}>
+          <SilhouetteImage src={src} color={0} onError={() => { setError(true) }} />
+        </div>
       </div>
-      <div style={{ height: baseHeight < height ? '100%' : `${scale}%` }}>
-        <SilhouetteImage src={src} color={0} />
-      </div>
-    </div>
+    </div> : <></>
   );
 };
 

@@ -1,17 +1,19 @@
 import React from 'react';
 import './style/index.scss';
+import { IProps } from './types';
+
 /**
  * Pitr - CC0 - Wikimedia Commons
  */
-const StandingMan: React.FC = (): JSX.Element => (
+const StandingMan: React.FC<IProps> = ({ viewBox = '0 0 165.175 500.846' }): JSX.Element => (
   <div className='StandingMan'>
     <svg
       xmlns='http://www.w3.org/2000/svg'
       version='1'
       className='StandingMan_svg'
-      width='165.175'
+      width='48'
       height='500.846'
-      viewBox='0 0 165.175 500.846'
+      viewBox={viewBox}
     >
       <path
         className='StandingMan_svg-path'

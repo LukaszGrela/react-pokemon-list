@@ -15,6 +15,25 @@
     &_body {
         min-height: 10rem;
         font-size: 1.4rem;
+        display: flex;
+        align-items: flex-end;
+        align-content: stretch;
+
+        & .SilhouetteImage {
+            margin: 0 1rem;
+        }
+        & .pokemon-details {
+            margin: 0 1rem;
+
+            height: 121px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            & .label {
+                font-weight: 700;
+            }
+        }
     }
     &_footer {
     }

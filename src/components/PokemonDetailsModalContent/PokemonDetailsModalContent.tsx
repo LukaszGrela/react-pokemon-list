@@ -5,6 +5,9 @@ import InfiniteLoaderBar from '../InfiniteLoaderBar/InfiniteLoaderBar';
 import { API_GET_SPRITE_FRONT } from '../../api';
 import HeightCompare from '../HeightCompare/HeightCompare';
 import './style/index.scss';
+import { Image } from '../Image';
+import SilhouetteImage from '../SilhouetteImage/SilhouetteImage';
+import { useState } from 'react';
 
 const PokemonDetailsModalContent: React.FC<IProps> = ({
   modalId,
@@ -12,6 +15,7 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
   name,
   closeModal,
 }): JSX.Element => {
+  const [fallback, setUseFallback] = useState(false)
   const { data, error, isLoading } = useGetPokemonByNameOrIdQuery(pid);
 
   const capitaliseName = capitalise(name);
@@ -33,15 +37,30 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
         {!isLoading && error && <p>{`${error}`}</p>}
         {!isLoading && !error && data && (
           <>
-            <div className='pokemon-weight'>
-              <span className='label'>Weight: </span>
-              <span className='value'>{data.weight / 10 + 'kg'}</span>
-            </div>
-            <div className='pokemon-height'>
-              <span className='label'>Height: </span>
-              <span className='value'>{data.height / 10 + 'm'}</span>
+            {!fallback ? <SilhouetteImage
+              src={API_GET_SPRITE_FRONT(pid)}
+              onError={() => {
+                setUseFallback(true)
+              }}
+            // className='pokemon-image'
+            // alt={`Image of ${name} pokemon.`} 
+            /> :
+              <Image
+                src={API_GET_SPRITE_FRONT('default/0')}
+
+              />}
+            <div className='pokemon-details'>
+              <div className='pokemon-height'>
+                <span className='label'>Height: </span>
+                <span className='value'>{data.height / 10 + 'm'}</span>
+              </div>
+              <div className='pokemon-weight'>
+                <span className='label'>Weight: </span>
+                <span className='value'>{data.weight / 10 + 'kg'}</span>
+              </div>
             </div>
             <HeightCompare
+              title="Height comparison"
               src={API_GET_SPRITE_FRONT(pid)}
               baseHeight={1.8}
               height={data.height / 10}

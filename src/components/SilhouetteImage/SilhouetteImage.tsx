@@ -5,21 +5,15 @@ import {
 } from '../../utils/colors';
 import {
   TRGBAData,
- ERGBADataIndex,
+  ERGBADataIndex,
+  trim,
+  TThresholdFunction,
 } from '../../utils/canvas-context';
 
 import './style/index.scss';
+import { IProps, TPathToPNG } from './types';
 
-type TPathToPNG = string;
-export interface IProps {
-  src: TPathToPNG;
-}
 
-export type TThresholdFunction = (
-  x: number,
-  y: number,
-  data: TRGBAData
-) => boolean;
 const alphaThreshold: TThresholdFunction = (
   x: number,
   y: number,
@@ -30,8 +24,8 @@ const alphaThreshold: TThresholdFunction = (
 
 const useCanvas = (
   url: TPathToPNG,
-  trim: boolean = false,
-  color: TRGB = 0,
+  crop: boolean = false,
+  color: TRGB = Number.MIN_SAFE_INTEGER,
   thresholdColor: TThresholdFunction = alphaThreshold
 ): React.RefObject<HTMLCanvasElement> => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -50,67 +44,29 @@ const useCanvas = (
         canvas.height = img.height;
         context?.drawImage(img, 0, 0);
 
-        if (trim) {
-          // bottom-trim
-          let trimBottom = -1;
-          bottomTrim: for (let r = img.height; --r >= 0; ) {
-            // row by row
-            for (let c = 0; c < img.width; c++) {
-              // columns
-              const data = context?.getImageData(c, r, 1, 1, {
-                colorSpace: 'srgb',
-              });
-              if (data && data.data && data.data[3] === 255) {
-                trimBottom = r + 1;
-                console.log(data.data);
-                break bottomTrim;
-              }
-            }
-          }
-          let trimTop = -1;
-          topTrim: for (
-            let r = 0;
-            r < (trimBottom !== -1 ? trimBottom : img.height);
-            r++
-          ) {
-            // top-trim
-            for (let c = 0; c < img.width; c++) {
-              // columns
-              const data = context?.getImageData(c, r, 1, 1, {
-                colorSpace: 'srgb',
-              });
-              if (data && data.data && data.data[3] === 255) {
-                trimTop = r - 1;
-                break topTrim;
-              }
-            }
-          }
+        if (crop && context) {
+          const cropRect = trim(context, alphaThreshold);
 
-          if (trimBottom > 0 || trimTop > 0) {
-            const newHeight =
-              (trimBottom !== -1 ? trimBottom : img.height) -
-              Math.max(trimTop, 0);
-            canvas.height = newHeight;
+          if (!cropRect.isEmpty()) {
+            // set new, cropped size
+            canvas.width = cropRect.width;
+            canvas.height = cropRect.height;
 
-            context?.clearRect(0, 0, img.width, img.height);
-            context?.drawImage(
-              img,
-              0,
-              Math.max(trimTop, 0),
-              img.width,
-              newHeight,
-              0,
-              0,
-              img.width,
-              newHeight
-            );
+            // clear existing data
+            context.clearRect(0, 0, img.width, img.height);
+
+            // paint cropped image
+            context.drawImage(img,
+              cropRect.x, cropRect.y, cropRect.width, cropRect.height,
+              0, 0, cropRect.width, cropRect.height);
           }
         }
+
         // paint it
         if (context) {
           const { width, height } = canvas;
           const imageData = context.getImageData(0, 0, width, height);
-          const fillData = rgbToChannels(color);
+          const fillData = color === Number.MIN_SAFE_INTEGER ? [] : rgbToChannels(color);
 
           for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
@@ -122,7 +78,7 @@ const useCanvas = (
                 imageData.data[pos * 4 + ERGBADataIndex.B],
                 imageData.data[pos * 4 + ERGBADataIndex.A],
               ]);
-              if (paint) {
+              if (paint && fillData.length > 0) {
                 imageData.data[pos * 4 + ERGBADataIndex.R] =
                   fillData[ERGBADataIndex.R];
                 imageData.data[pos * 4 + ERGBADataIndex.G] =
@@ -138,14 +94,14 @@ const useCanvas = (
       };
       img.onerror = console.error;
     }
-    return () => {};
-  }, [img, url, trim, color, thresholdColor]);
+    return () => { };
+  }, [img, url, crop, color, thresholdColor]);
 
   return canvasRef;
 };
 
-const SilhouetteImage: React.FC<IProps> = ({ src }: IProps): JSX.Element => {
-  const canvas2Ref = useCanvas(src, true);
+const SilhouetteImage: React.FC<IProps> = ({ src, color }: IProps): JSX.Element => {
+  const canvas2Ref = useCanvas(src, true, color);
 
   return (
     <div className='SilhouetteImage'>

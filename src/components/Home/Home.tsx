@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Modal from '../Modal/Modal';
+import Pagination from '../Pagination/Pagination';
 import PokemonDetailsModalContent from '../PokemonDetailsModalContent/PokemonDetailsModalContent';
 import PokemonList from '../PokemonList/PokemonList';
 import './style/index.scss';
 
 const Home: React.FC = (): JSX.Element => {
-  const { page } = useParams();
+  const { page: paramPage } = useParams();
+  const page = paramPage ? parseInt(paramPage) : 1
   const modalId = 'pokemon-details-modal';
   const [showModal, setShowModal] = useState<{ pid: string, name: string } | null>(null)
 
@@ -22,8 +24,8 @@ const Home: React.FC = (): JSX.Element => {
       <header>
         <h1>Pokémon List</h1>
       </header>
-      <PokemonList page={page ? parseInt(page) : 1} interactive={!isModalOpened} handlePokemonSelect={handlePokemonSelection} />
-      <footer>{page}</footer>
+      <PokemonList page={page} interactive={!isModalOpened} handlePokemonSelect={handlePokemonSelection} />
+      <footer><Pagination page={page} /></footer>
       <Modal
         modalId={modalId}
         isOpen={isModalOpened}

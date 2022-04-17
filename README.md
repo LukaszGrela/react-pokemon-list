@@ -14,6 +14,10 @@ Currently the https://pokeapi.co provides broken data of the evolution chains, w
 ## Tools
 Make sure you have installed [Volta](http://volta.sh/) which ensures you have the right version of node and npm for this project.
 
+## VSCode
+- Prettier `esbenp.prettier-vscode`
+- Eslint `dbaeumer.vscode-eslint`
+
 ## React
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

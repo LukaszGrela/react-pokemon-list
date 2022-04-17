@@ -7,7 +7,6 @@
     "plugin:react/recommended",
     "airbnb",
     "prettier",
-    "prettier/prettier",
     "plugin:prettier/recommended"
   ],
   "globals": {
@@ -23,7 +22,7 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
-    "no-use-before-define": "off",
+    "no-use-before-define": "warn",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "import/extensions": [
@@ -39,7 +38,13 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
     "react/require-default-props": "off",
-    "react/function-component-definition": "off"
+    "react/function-component-definition": "off",
+    "import/prefer-default-export": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
   "settings": {
     "import/resolver": {

@@ -13,7 +13,8 @@ const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height, title }): JS
   let viewBox: string | undefined;
 
   if (scale < 17) {
-    scale = 4 * Math.round(scale);
+    scale = 2 * Math.round(scale);
+
     viewBox = '0 300 160 85'
   }
 

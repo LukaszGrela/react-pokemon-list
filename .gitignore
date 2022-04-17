@@ -67,3 +67,6 @@ public/dist/
 # dotenv environment variables file
 .env
 
+
+# temp files
+src-copy/

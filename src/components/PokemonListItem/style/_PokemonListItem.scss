@@ -24,10 +24,17 @@
         bottom: 0;
     }
 
-    &_image {
+    &_imageWrapper {
         width: $list-item-image-size;
         height: $list-item-image-size;
         margin: 0.4rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_image {
         image-rendering: pixelated;
     }
 }

@@ -23,13 +23,17 @@ const PokemonListItem: React.FC<IProps> = ({
       }}
     >
 
-      <Image
-        src={API_GET_SPRITE_FRONT(pid)}
-        fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
+      <div
+        className="PokemonListItem_imageWrapper">
 
-        alt={`Image of ${name} pokemon.`}
-        className="PokemonListItem_image"
-      />
+        <Image
+          src={API_GET_SPRITE_FRONT(pid)}
+          fallbackSrc={API_GET_SPRITE_FRONT('default/0')}
+
+          alt={`Image of ${name} pokemon.`}
+          className="PokemonListItem_image"
+        />
+      </div>
 
       <div className='PokemonListItem_name'>{name}</div>
     </li>

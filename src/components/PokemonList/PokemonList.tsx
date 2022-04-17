@@ -6,6 +6,7 @@ import PokemonListItem from '../PokemonListItem/PokemonListItem';
 import Spinner from '../Spinner/Spinner';
 
 import './style/index.scss';
+
 export interface IProps {
   page: number;
 
@@ -16,14 +17,17 @@ export interface IProps {
 
 const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
   const { page, interactive, handlePokemonSelect } = props;
-  const { data: results, error, isLoading: loading, } = useGetPokemonsListQuery(PAGINATION(page));
+  const {
+    data: results,
+    error,
+    isLoading: loading,
+  } = useGetPokemonsListQuery(PAGINATION(page));
 
   return (
-    <>{!loading && (
-      <ul className={`PokemonList${interactive ? ' interactive' : ''}`}>
-        {results?.results.map(
-          (resource: TNamedAPIResource): ReactNode => {
-            console.log(resource)
+    <>
+      {!loading && (
+        <ul className={`PokemonList${interactive ? ' interactive' : ''}`}>
+          {results?.results.map((resource: TNamedAPIResource): ReactNode => {
             const key = resource.url;
             return (
               <PokemonListItem
@@ -33,12 +37,15 @@ const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
                 onClick={(pid) => handlePokemonSelect(pid, resource.name)}
               />
             );
-          }
-        )}
-      </ul>
-    )}
+          })}
+        </ul>
+      )}
       {!loading && !error && !results && <span>No data found</span>}
-      {loading && <div className='PokemonList PokemonList_loading'><Spinner /></div>}
+      {loading && (
+        <div className="PokemonList PokemonList_loading">
+          <Spinner />
+        </div>
+      )}
       {!loading && error && <p>{`${error}`}</p>}
     </>
   );

@@ -1,10 +1,15 @@
 export class Rect {
   public readonly x: number;
+
   public readonly y: number;
+
   public readonly width: number;
+
   public readonly height: number;
+
   public readonly trbl: [t: number, r: number, b: number, l: number];
-  public readonly xywh: [x: number, y: number, w: number, h: number]
+
+  public readonly xywh: [x: number, y: number, w: number, h: number];
 
   constructor(
     public readonly top: number,
@@ -25,15 +30,15 @@ export class Rect {
     return this.width <= 0 || this.height <= 0;
   }
 
-
   public toTRBL(): string {
-    return `${this.trbl.join()}`
+    return `${this.trbl.join()}`;
   }
+
   public toXYWH(): string {
-    return `${this.xywh.join()}`
+    return `${this.xywh.join()}`;
   }
 
   toString(): string {
-    return `Rect: trbl=${this.toTRBL()}|xywh=${this.toXYWH()}`
+    return `Rect: trbl=${this.toTRBL()}|xywh=${this.toXYWH()}`;
   }
 }

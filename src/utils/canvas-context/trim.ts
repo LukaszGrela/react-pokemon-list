@@ -1,3 +1,4 @@
+/* eslint-disable no-labels, no-restricted-syntax, no-plusplus */
 import { ERGBADataIndex } from './types';
 import type { TThresholdFunction } from './types';
 import { Rect } from './Rect';
@@ -9,10 +10,10 @@ export const trim = (
   const { width, height } = context.canvas;
   const imageData = context.getImageData(0, 0, width, height);
   // top
-  let t = -1,
-    r = -1,
-    b = -1,
-    l = -1;
+  let t = -1;
+  let r = -1;
+  let b = -1;
+  let l = -1;
   topTrim: for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const pos = y * width + x;
@@ -34,7 +35,7 @@ export const trim = (
     return new Rect(0, 0, 0, 0);
   }
 
-  rightTrim: for (let x = width; --x >= 0;) {
+  rightTrim: for (let x = width; --x >= 0; ) {
     for (let y = t; y < height; y++) {
       const pos = y * width + x;
       if (
@@ -52,8 +53,8 @@ export const trim = (
   }
   if (r === -1) r = width;
 
-  bottomTrim: for (let y = height; --y >= t;) {
-    for (let x = r; --x >= 0;) {
+  bottomTrim: for (let y = height; --y >= t; ) {
+    for (let x = r; --x >= 0; ) {
       const pos = y * width + x;
       if (
         threshold(x, y, [
@@ -70,9 +71,8 @@ export const trim = (
   }
   if (b === -1) b = height;
 
-
   leftTrim: for (let x = 0; x < r; x++) {
-    for (let y = b; --y >= t;) {
+    for (let y = b; --y >= t; ) {
       const pos = y * width + x;
       if (
         threshold(x, y, [

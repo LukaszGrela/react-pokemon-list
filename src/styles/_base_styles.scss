@@ -16,6 +16,12 @@ body,
   font-family: sans-serif;
 }
 
+li > button {
+  // reset button styles when it is direct child of LI
+  border: 0;
+  background: transparent;
+}
+
 // a11y helper
 .is-a11y {
   @include visually-hide;

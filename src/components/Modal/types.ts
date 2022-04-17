@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { ECloseModalEnum } from "./enums";
+import { ReactNode } from 'react';
+import { ECloseModalEnum } from './enums';
 
 export interface IProps {
   modalId?: string;
@@ -11,10 +11,10 @@ export interface IProps {
   disableOverlay?: boolean;
 
   modalTransitionTimeout?:
-  | number
-  | { appear?: number; enter?: number; exit?: number };
+    | number
+    | { appear?: number; enter?: number; exit?: number };
 
   overlayTransitionTimeout?:
-  | number
-  | { appear?: number; enter?: number; exit?: number };
+    | number
+    | { appear?: number; enter?: number; exit?: number };
 }

@@ -23,7 +23,11 @@ describe('utils', () => {
       ];
 
       it('Test trim full transparent canvas', () => {
-        const x = 0, y = 0, w = 0, h = 0, expected = new Rect(0, 0, 0, 0);
+        const x = 0;
+        const y = 0;
+        const w = 0;
+        const h = 0;
+        const expected = new Rect(0, 0, 0, 0);
 
         expect(canvas).toBeDefined();
         const context = canvas.getContext('2d');
@@ -46,7 +50,7 @@ describe('utils', () => {
         const rect = trim(context!, threshold);
 
         expect(rect.toXYWH()).toEqual(expected.toXYWH());
-      })
+      });
 
       test.each<TTestCase>([
         ['full opaque', 0, 0, 4, 4, new Rect(0, 4, 4, 0)],
@@ -93,20 +97,35 @@ describe('utils', () => {
         expect(trimmedContext).toBeDefined();
         expect(trimmedContext).not.toBeNull();
 
-        const { width, height } = trimmedContext!.getImageData(0, 0, rect.width, rect.height);
+        const { width, height } = trimmedContext!.getImageData(
+          0,
+          0,
+          rect.width,
+          rect.height
+        );
 
         expect(width).toBeGreaterThan(0);
         expect(height).toBeGreaterThan(0);
 
-        trimmedContext?.drawImage(canvas,
-          rect.x, rect.y, rect.width, rect.height,
-          0, 0, rect.width, rect.height)
+        trimmedContext?.drawImage(
+          canvas,
+          rect.x,
+          rect.y,
+          rect.width,
+          rect.height,
+          0,
+          0,
+          rect.width,
+          rect.height
+        );
 
-        expect(trim(trimmedContext!, threshold).xywh).toEqual([0, 0, rect.width, rect.height])
-
+        expect(trim(trimmedContext!, threshold).xywh).toEqual([
+          0,
+          0,
+          rect.width,
+          rect.height,
+        ]);
       });
-
-
     });
   });
 });

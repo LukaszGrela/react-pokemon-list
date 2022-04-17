@@ -1,4 +1,5 @@
-import { TRGBAData } from "./canvas-context";
+/* eslint-disable no-bitwise */
+import { TRGBAData } from './canvas-context';
 
 export type TRGBA = number;
 export const rgbaToChannels = (color: TRGBA): TRGBAData => {

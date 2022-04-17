@@ -17,7 +17,8 @@ if (container !== null) {
     </React.StrictMode>
   );
 } else {
-  console.error("There is no container 'root' available.")
+  // eslint-disable-next-line no-console
+  console.error("There is no container 'root' available.");
 }
 
 // If you want to start measuring performance in your app, pass a function

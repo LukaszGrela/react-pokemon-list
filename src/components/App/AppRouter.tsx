@@ -8,21 +8,9 @@ const AppRouter: React.FC = (): JSX.Element => {
   return (
     <ConnectedRouter history={history}>
       <Routes>
-        <Route
-          path='/index.html'
-          element={<Navigate replace to='/1' />
-          }
-        />
-        <Route
-          path='/'
-          element={<Navigate replace to='/1' />
-          }
-        />
-        <Route
-          path='/:page'
-          element={<Home />
-          }
-        />
+        <Route path="/index.html" element={<Navigate replace to="/1" />} />
+        <Route path="/" element={<Navigate replace to="/1" />} />
+        <Route path="/:page" element={<Home />} />
       </Routes>
     </ConnectedRouter>
   );

@@ -23,4 +23,4 @@ export const getCSSTimeUnit = (time?: string, defaultsTo = 0): number => {
   }
 
   return defaultsTo;
-}
+};

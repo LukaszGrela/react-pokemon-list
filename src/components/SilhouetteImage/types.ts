@@ -1,4 +1,4 @@
-import { TRGB } from "../../utils/colors";
+import { TRGB } from '../../utils/colors';
 
 export type TPathToPNG = string;
 export interface IProps {

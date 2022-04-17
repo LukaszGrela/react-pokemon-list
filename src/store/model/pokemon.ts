@@ -2,78 +2,6 @@ import { TNamedAPIResource, TPath, TResourceId, TResourceName } from './common';
 
 type TNamedIdResource = TResourceId & TResourceName;
 
-export interface IPokemonDetail extends TNamedIdResource {
-  /**
-   * The base experience gained for defeating this Pokémon.
-   */
-  base_experience: number;
-  /**
-   * The height of this Pokémon in decimetres.
-   */
-  height: number;
-  /**
-   * Set for exactly one Pokémon used as the default for each species.
-   */
-  is_default: boolean;
-  /**
-   * Order for sorting. Almost national order, except families are grouped together.
-   */
-  order: number;
-  /**
-   * The weight of this Pokémon in hectograms.
-   */
-  weight: number;
-  /**
-   * A list of abilities this Pokémon could potentially have.
-   */
-  abilities: TPokemonAbility[];
-  /**
-   * A list of forms this Pokémon can take on.
-   */
-  forms: TNamedAPIResource[];
-  /**
-   * A list of game indices relevent to Pokémon item by generation.
-   */
-  game_indices: TVersionGameIndex[];
-  /**
-   * A list of items this Pokémon may be holding when encountered.
-   */
-  held_items: TPokemonHeldItem[];
-  /**
-   * A link to a list of location areas, as well as encounter details pertaining to specific versions.
-   */
-  location_area_encounters: TPath;
-  /**
-   * A list of moves along with learn methods and level details pertaining to specific version groups.
-   */
-  moves: TPokemonMove[];
-  /**
-   * The species this Pokémon belongs to.
-   * NamedAPIResource to (TPokemonSpecies)
-   */
-  species: TNamedAPIResource;
-
-  /**
-   * A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at PokeAPI/sprites
-   */
-  sprites: TPokemonSprites & { versions: TVersionsPokemonSprites } & {
-    other: TOtherPokemonSprites;
-  };
-
-  /**
-   * A list of base stat values for this Pokémon.
-   */
-  stats: TPokemonStat[];
-  /**
-   * A list of details showing types this pokémon had in previous generations
-   */
-  past_types: TPokemonTypePast[];
-  /**
-   * A list of details showing types this Pokémon has.
-   */
-  types: TPokemonType[];
-}
-
 export type TVersionGameIndex = {
   /**
    * The internal id of an API resource within game data.
@@ -127,17 +55,6 @@ export type TPokemonTypePast = {
   types: TPokemonType[];
 };
 
-export type TPokemonHeldItem = {
-  /**
-   * The item the referenced Pokémon holds. NamedAPIResource (Item)
-   */
-  item: TNamedAPIResource;
-  /**
-   * The details of the different versions in which the item is held.
-   */
-  version_details: TPokemonHeldItemVersion[];
-};
-
 export type TPokemonHeldItemVersion = {
   /**
    * The version in which the item is held.
@@ -149,19 +66,16 @@ export type TPokemonHeldItemVersion = {
    */
   rarity: number;
 };
-
-export type TPokemonMove = {
+export type TPokemonHeldItem = {
   /**
-   * The move the Pokémon can learn.
-   * TNamedAPIResource to TMove
+   * The item the referenced Pokémon holds. NamedAPIResource (Item)
    */
-  move: TNamedAPIResource;
+  item: TNamedAPIResource;
   /**
-   * The details of the version in which the Pokémon can learn the move.
+   * The details of the different versions in which the item is held.
    */
-  version_group_details: TPokemonMoveVersion[];
+  version_details: TPokemonHeldItemVersion[];
 };
-
 export type TPokemonMoveVersion = {
   /**
    * The method by which the move is learned.
@@ -177,6 +91,17 @@ export type TPokemonMoveVersion = {
    * The minimum level to learn the move.
    */
   level_learned_at: number;
+};
+export type TPokemonMove = {
+  /**
+   * The move the Pokémon can learn.
+   * TNamedAPIResource to TMove
+   */
+  move: TNamedAPIResource;
+  /**
+   * The details of the version in which the Pokémon can learn the move.
+   */
+  version_group_details: TPokemonMoveVersion[];
 };
 
 export type TPokemonStat = {
@@ -623,3 +548,75 @@ const a: IPokemonDetail = {
   ],
 };
 */
+
+export interface IPokemonDetail extends TNamedIdResource {
+  /**
+   * The base experience gained for defeating this Pokémon.
+   */
+  base_experience: number;
+  /**
+   * The height of this Pokémon in decimetres.
+   */
+  height: number;
+  /**
+   * Set for exactly one Pokémon used as the default for each species.
+   */
+  is_default: boolean;
+  /**
+   * Order for sorting. Almost national order, except families are grouped together.
+   */
+  order: number;
+  /**
+   * The weight of this Pokémon in hectograms.
+   */
+  weight: number;
+  /**
+   * A list of abilities this Pokémon could potentially have.
+   */
+  abilities: TPokemonAbility[];
+  /**
+   * A list of forms this Pokémon can take on.
+   */
+  forms: TNamedAPIResource[];
+  /**
+   * A list of game indices relevent to Pokémon item by generation.
+   */
+  game_indices: TVersionGameIndex[];
+  /**
+   * A list of items this Pokémon may be holding when encountered.
+   */
+  held_items: TPokemonHeldItem[];
+  /**
+   * A link to a list of location areas, as well as encounter details pertaining to specific versions.
+   */
+  location_area_encounters: TPath;
+  /**
+   * A list of moves along with learn methods and level details pertaining to specific version groups.
+   */
+  moves: TPokemonMove[];
+  /**
+   * The species this Pokémon belongs to.
+   * NamedAPIResource to (TPokemonSpecies)
+   */
+  species: TNamedAPIResource;
+
+  /**
+   * A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at PokeAPI/sprites
+   */
+  sprites: TPokemonSprites & { versions: TVersionsPokemonSprites } & {
+    other: TOtherPokemonSprites;
+  };
+
+  /**
+   * A list of base stat values for this Pokémon.
+   */
+  stats: TPokemonStat[];
+  /**
+   * A list of details showing types this pokémon had in previous generations
+   */
+  past_types: TPokemonTypePast[];
+  /**
+   * A list of details showing types this Pokémon has.
+   */
+  types: TPokemonType[];
+}

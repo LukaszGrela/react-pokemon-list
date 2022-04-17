@@ -12,12 +12,11 @@ export const API_GET_SPRITE_BACK = (id: string): string =>
 
 export type TPagination = { limit: number; offset?: number };
 export const PAGINATION = (page = 1, limit = 20): TPagination => {
-  let params: TPagination = {
+  const params: TPagination = {
     limit,
   };
-  if (page < 1) page = 1;
-  let offset = (page - 1) * limit;
-  if (offset > 0) params['offset'] = offset;
+  const offset = (Math.max(1, page) - 1) * limit;
+  if (offset > 0) params.offset = offset;
 
   return params;
 };

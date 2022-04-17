@@ -25,7 +25,7 @@ const Image: React.FC<IProps> = ({
       alt={alt}
       className={`Image${className ? ` ${className}` : ''}`}
       onError={handleError}
-      aria-hidden={!(!!alt)}
+      aria-hidden={!alt}
     />
   );
 };

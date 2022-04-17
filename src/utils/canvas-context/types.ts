@@ -1,8 +1,8 @@
 export enum ERGBADataIndex {
-  R,
-  G,
-  B,
-  A,
+  R = 0,
+  G = 1,
+  B = 2,
+  A = 3,
 }
 export type TRGBAData = [r: number, g: number, b: number, a: number];
 

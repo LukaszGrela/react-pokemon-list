@@ -8,12 +8,13 @@ import HeightCompare from '../HeightCompare/HeightCompare';
 import { Image } from '../Image';
 import SilhouetteImage from '../SilhouetteImage/SilhouetteImage';
 import './style/index.scss';
+import CloseModal from '../CloseModal/CloseModal';
+import { ECloseModalEnum } from '../Modal/enums';
 
 const PokemonDetailsModalContent: React.FC<IProps> = ({
   modalId,
   pid,
   name,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   closeModal,
 }): JSX.Element => {
   const [fallback, setUseFallback] = useState(false);
@@ -32,6 +33,12 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
             ? `Loading of ${capitaliseName}`
             : `Details of ${capitaliseName}`}
         </h2>
+        <CloseModal
+          describedBy={`modal-${modalId}-title`}
+          onClick={() => {
+            closeModal?.(ECloseModalEnum.DISMISSED);
+          }}
+        />
         {isLoading && <InfiniteLoaderBar />}
       </header>
       <section className="PokemonDetailsModalContent_body">
@@ -44,8 +51,6 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
                 onError={() => {
                   setUseFallback(true);
                 }}
-                // className='pokemon-image'
-                // alt={`Image of ${name} pokemon.`}
               />
             ) : (
               <Image src={API_GET_SPRITE_FRONT('default/0')} />

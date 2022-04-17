@@ -1,40 +1,47 @@
 .Modal {
-    min-width: 32rem;
-    max-width: 66.7rem;
+  min-width: 32rem;
+  max-width: 66.7rem;
 }
 
 .PokemonDetailsModalContent {
-    &_header {
-        padding: 1rem 0;
-        position: relative;
+  &_header {
+    padding: 1rem 0;
+    position: relative;
+
+    button.CloseModal {
+      position: absolute;
+      right: 0;
+      top: 0.5rem;
     }
-    &_title {
-        font-size: 2rem;
+  }
+  &_title {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-right: 3rem;
+  }
+  &_body {
+    min-height: 10rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: flex-end;
+    align-content: stretch;
+
+    & .SilhouetteImage {
+      margin: 0 1rem;
+    }
+    & .pokemon-details {
+      margin: 0 1rem;
+
+      height: 121px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      & .label {
         font-weight: 700;
+      }
     }
-    &_body {
-        min-height: 10rem;
-        font-size: 1.4rem;
-        display: flex;
-        align-items: flex-end;
-        align-content: stretch;
-
-        & .SilhouetteImage {
-            margin: 0 1rem;
-        }
-        & .pokemon-details {
-            margin: 0 1rem;
-
-            height: 121px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            & .label {
-                font-weight: 700;
-            }
-        }
-    }
-    &_footer {
-    }
+  }
+  &_footer {
+  }
 }

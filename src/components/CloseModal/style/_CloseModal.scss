@@ -1,0 +1,13 @@
+.CloseModal {
+  width: 3rem;
+  height: 3rem;
+  color: $primary;
+  border: none;
+  background: transparent;
+  svg {
+    fill: $primary;
+  }
+  &:hover svg {
+    fill: $logoPrimary;
+  }
+}

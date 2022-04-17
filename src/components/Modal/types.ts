@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 import { ECloseModalEnum } from './enums';
 
+export type TCloseModalCallback = (reason: ECloseModalEnum) => void;
 export interface IProps {
   modalId?: string;
   children: ReactNode;
   isOpen?: boolean;
-  closeModal: (reason: ECloseModalEnum) => void;
+  closeModal: TCloseModalCallback;
   className?: string;
   overlayClassName?: string;
   disableOverlay?: boolean;

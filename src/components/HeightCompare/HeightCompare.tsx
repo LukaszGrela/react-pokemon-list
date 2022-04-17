@@ -7,12 +7,13 @@ import './style/index.scss';
 
 const HeightCompare: React.FC<IProps> = ({ src, baseHeight, height, title }): JSX.Element => {
   const [error, setError] = useState(false);
+  const manIsTaller = Math.max(baseHeight, height) === baseHeight;
   const heightMax = Math.max(baseHeight, height);
   const heightMin = Math.min(baseHeight, height);
   let scale = (heightMin / heightMax) * 100;
   let viewBox: string | undefined;
 
-  if (scale < 17) {
+  if (scale < 17 && manIsTaller) {
     scale = 2 * Math.round(scale);
 
     viewBox = '0 300 160 85'

@@ -1,11 +1,12 @@
 .PokemonListItem {
+    position: relative;
     list-style: none;
     margin: 1rem;
     border-radius: 0.8rem;
     text-align: center;
     vertical-align: bottom;
-    width: 10.4rem;
-    height: 12.9rem;
+    width: $list-item-width;
+    height: $list-item-height;
 
     @include shadow-1;
 
@@ -13,15 +14,19 @@
         text-transform: capitalize;
         font-family: sans-serif;
         font-size: 1.4rem;
+        line-height: 1.8rem;
         font-weight: 700;
         margin: 0.4rem 0;
         margin-bottom: 0.8rem;
-        width: 10.4rem;
+        width: $list-item-name-width;
+
+        position: absolute;
+        bottom: 0;
     }
 
     &_image {
-        width: 9.6rem;
-        height: 9.6rem;
+        width: $list-item-image-size;
+        height: $list-item-image-size;
         margin: 0.4rem;
         image-rendering: pixelated;
     }

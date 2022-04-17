@@ -16,3 +16,9 @@ $footer-height: 4rem;
 
 // animations
 $check-item-transition-time: 0.2s;
+
+//
+$list-item-image-size: 12.8rem;
+$list-item-name-width: calc($list-item-image-size + 0.4rem + 0.4rem);
+$list-item-width: $list-item-name-width;
+$list-item-height: calc($list-item-image-size + 1.8rem + 0.4rem + 0.8rem);

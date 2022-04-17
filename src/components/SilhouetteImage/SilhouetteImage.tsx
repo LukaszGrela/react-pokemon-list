@@ -37,6 +37,10 @@ const useCanvas = (
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
+
+      canvas.width = 96;
+      canvas.height = 96;
+
       const context = canvas.getContext('2d');
       img.src = url;
 
@@ -106,7 +110,9 @@ const SilhouetteImage: React.FC<IProps> = ({ src, color, onError }: IProps): JSX
 
   return (
     <div className='SilhouetteImage'>
-      <canvas ref={canvas2Ref} className='SilhouetteImage_silhouette' />
+      <canvas
+        ref={canvas2Ref}
+        className='SilhouetteImage_silhouette' />
     </div>
   );
 };

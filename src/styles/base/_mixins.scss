@@ -1,0 +1,146 @@
+/*
+----------------------------------------------------------------------------
+a11y.
+----------------------------------------------------------------------------
+*/
+@mixin visually-hide {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+----------------------------------------------------------------------------
+Flexbox.
+----------------------------------------------------------------------------
+*/
+@mixin flex-simple(
+  $display: flex,
+  $direction: row,
+  $justify: space-between,
+  $align: initial,
+  $wrap: nowrap
+) {
+    align-items: $align;
+    display: $display;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+}
+
+// x y blur spread color
+@mixin shadow-1() {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+@mixin shadow-2() {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+@mixin shadow-3() {
+    box-shadow: 0 13px 25px 0 rgba(0, 0, 0, 0.3), 0 11px 7px 0 rgba(0, 0, 0, 0.19);
+}
+@mixin shadow-4() {
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3), 0 14px 12px 0 rgba(0, 0, 0, 0.17);
+}
+@mixin shadow-5() {
+    box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+}
+
+@mixin png-shadow-2() {
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='1' dy='4' result='offsetblur'/><feFlood flood-color='rgba(0,0,0,0.5)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");
+    -webkit-filter: drop-shadow(1px 4px 2px rgba(0, 0, 0, 0.5));
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=1, OffY=4, Color='#444')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=1, OffY=4, Color='#444')";
+}
+
+@mixin abs-middle {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin ellipsis {
+    word-wrap: unset;
+    word-break: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin media($min, $max) {
+    @if ($min > 0 and $max > 0) {
+        @media only screen and (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else if ($min == 0 and $max > 0) {
+        @media only screen and (max-width: $max) {
+            @content;
+        }
+    } @else if ($max == 0 and $min > 0) {
+        @media only screen and (min-width: $min) {
+            @content;
+        }
+    }
+}
+
+@mixin media-device($min, $max) {
+    @media only screen and (min-device-width: $min) and (max-device-width: $max) {
+        @content;
+    }
+}
+
+@mixin pixel-ratio($a, $b) {
+    @media only screen and (-o-min-device-pixel-ratio: #{$a}/#{$b}),
+        only screen and (-webkit-min-device-pixel-ratio: $a/$b),
+        only screen and (min--moz-device-pixel-ratio: $a/$b),
+        only screen and (-moz-min-device-pixel-ratio: $a/$b),
+        only screen and (min-device-pixel-ratio: $a/$b),
+        only screen and (min-resolution: ($a/$b)+dppx) {
+        @content;
+    }
+}
+
+@mixin retina-2x() {
+    @include pixel-ratio(5, 4) {
+        @content;
+    }
+}
+
+// /* @2x Images (Pixel Ratio of 1.25+) */
+// @media only screen and (-o-min-device-pixel-ratio: 5/4),
+//        only screen and (-webkit-min-device-pixel-ratio: 1.25),
+//        only screen and (min--moz-device-pixel-ratio: 1.25),
+//        only screen and (-moz-min-device-pixel-ratio: 1.25),
+//        only screen and (min-device-pixel-ratio: 1.25),
+//        only screen and (min-resolution: 1.25dppx) {
+//            @content;
+// }
+@mixin retina-3x() {
+    @include pixel-ratio(9, 4) {
+        @content;
+    }
+}
+
+// /* @3x Images (Pixel Ratio of 2.25+) */
+// @media only screen and (-o-min-device-pixel-ratio: 9/4),
+//        only screen and (-webkit-min-device-pixel-ratio: 2.25),
+//        only screen and (min-device-pixel-ratio: 2.25),
+//        only screen and (min-resolution: 2.25dppx) {
+//     #dgst_shopping_bag {background-image:url(img/shopping_bag@3x.png);}
+// }
+@mixin retina-4x() {
+    @include pixel-ratio(13, 4) {
+        @content;
+    }
+}
+
+// /* @4x Images (Pixel Ratio of 3.25+) */
+// @media only screen and (-o-min-device-pixel-ratio: 13/4),
+//        only screen and (-webkit-min-device-pixel-ratio: 3.25),
+//        only screen and (min-device-pixel-ratio: 3.25),
+//        only screen and (min-resolution: 3.25dppx) {
+//     #dgst_shopping_bag {background-image:url(img/shopping_bag@4x.png);}
+// }

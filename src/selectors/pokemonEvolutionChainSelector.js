@@ -1,1 +1,0 @@
-export const pokemonEvolutionChainSelector = (dict, id) => dict['pokemon-' + id] || null;

@@ -1,0 +1,17 @@
+.HeightCompare {
+    margin: 0 1rem;
+    &_title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    &_wrapper {
+        display: flex;
+        flex-direction: row;
+
+        position: relative;
+        height: 9.6rem;
+        align-items: baseline;
+    }
+}

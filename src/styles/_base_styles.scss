@@ -1,0 +1,30 @@
+@import './base/css_reset';
+
+/* stylelint-disable selector-max-id, declaration-no-important*/
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+}
+html,
+body,
+#root {
+  height: 100%;
+  user-select: none;
+  font-family: sans-serif;
+}
+
+li > button {
+  // reset button styles when it is direct child of LI
+  border: 0;
+  background: transparent;
+}
+
+// a11y helper
+.is-a11y {
+  @include visually-hide;
+}
+
+/* stylelint-enable selector-max-id, declaration-no-important*/

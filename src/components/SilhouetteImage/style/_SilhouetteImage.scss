@@ -1,0 +1,8 @@
+.SilhouetteImage {
+    height: 100%;
+    &_silhouette {
+        height: 100%;
+        position: relative;
+        image-rendering: pixelated;
+    }
+}

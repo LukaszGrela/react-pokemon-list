@@ -1,23 +1,29 @@
 .PokemonList {
-    padding-top: $header-height;
-    padding-bottom: $footer-height;
+  padding-top: $header-height;
+  padding-bottom: $footer-height;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
-    &.interactive {
-        .PokemonListItem {
-            cursor: pointer;
-            &:hover {
-                position: relative;
-                .PokemonListItem_image {
-                    position: relative;
-                    top: -2px;
-                    left: -2px;
-                    @include png-shadow-2;
-                }
-            }
+  &.interactive {
+    .PokemonListItem {
+      cursor: pointer;
+      &:hover {
+        position: relative;
+        .PokemonListItem_image {
+          position: relative;
+          top: -2px;
+          left: -2px;
+          @include png-shadow-2;
         }
+      }
     }
+  }
+
+  &_noData {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
 }

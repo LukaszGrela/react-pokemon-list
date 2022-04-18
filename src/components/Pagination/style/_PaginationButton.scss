@@ -1,0 +1,15 @@
+.PaginationButton {
+  border: 0;
+  background: transparent;
+  width: 3rem;
+  height: 3rem;
+
+  color: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+  }
+}

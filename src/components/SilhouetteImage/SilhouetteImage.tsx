@@ -77,23 +77,24 @@ const useCanvas = ({
         }
 
         // paint it
-        if (context) {
+        const fillData =
+          color === Number.MIN_SAFE_INTEGER ? [] : rgbToChannels(color);
+        if (context && fillData.length > 0) {
           const { width, height } = canvas;
           const imageData = context.getImageData(0, 0, width, height);
-          const fillData =
-            color === Number.MIN_SAFE_INTEGER ? [] : rgbToChannels(color);
 
           for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
               const pos = y * width + x;
 
-              const paint = thresholdColor(x, y, [
-                imageData.data[pos * 4 + ERGBADataIndex.R],
-                imageData.data[pos * 4 + ERGBADataIndex.G],
-                imageData.data[pos * 4 + ERGBADataIndex.B],
-                imageData.data[pos * 4 + ERGBADataIndex.A],
-              ]);
-              if (paint && fillData.length > 0) {
+              if (
+                thresholdColor(x, y, [
+                  imageData.data[pos * 4 + ERGBADataIndex.R],
+                  imageData.data[pos * 4 + ERGBADataIndex.G],
+                  imageData.data[pos * 4 + ERGBADataIndex.B],
+                  imageData.data[pos * 4 + ERGBADataIndex.A],
+                ])
+              ) {
                 imageData.data[pos * 4 + ERGBADataIndex.R] =
                   fillData[ERGBADataIndex.R];
                 imageData.data[pos * 4 + ERGBADataIndex.G] =

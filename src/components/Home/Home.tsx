@@ -1,3 +1,4 @@
+import './style/index.scss';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PAGINATION } from '../../api';
@@ -7,7 +8,6 @@ import Modal from '../Modal/Modal';
 import Pagination from '../Pagination/Pagination';
 import PokemonDetailsModalContent from '../PokemonDetailsModalContent/PokemonDetailsModalContent';
 import PokemonList from '../PokemonList/PokemonList';
-import './style/index.scss';
 
 const Home: React.FC = () => {
   const { page: paramPage } = useParams();

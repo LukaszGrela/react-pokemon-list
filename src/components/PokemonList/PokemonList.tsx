@@ -1,10 +1,9 @@
+import './style/index.scss';
 import React, { type ReactNode } from 'react';
 import { parseIdFromUrl } from '../../api';
 import type { TNamedAPIResource } from '../../store/model/common';
 import PokemonListItem from '../PokemonListItem/PokemonListItem';
 import Spinner from '../Spinner/Spinner';
-
-import './style/index.scss';
 
 export interface IProps {
   results?: TNamedAPIResource[];

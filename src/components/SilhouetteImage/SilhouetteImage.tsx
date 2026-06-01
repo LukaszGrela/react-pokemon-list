@@ -32,7 +32,7 @@ const useCanvas = ({
   errorHandler,
 }: TUseCanvasParams): React.RefObject<HTMLCanvasElement | null> => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const img = useRef(new global.Image());
+  const img = useRef(new Image());
 
   useEffect(() => {
     img.current.setAttribute('crossOrigin', 'anonymous');

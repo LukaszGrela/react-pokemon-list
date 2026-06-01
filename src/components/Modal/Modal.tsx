@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -69,12 +70,16 @@ const Modal: React.FC<IProps> = (props: IProps) => {
     };
   }, [htmlClassName]);
 
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   return (
     <Portal nodeId="modal-portal">
       {children && !disableOverlay && (
         <TransitionGroup component={null}>
           {isOpen && (
             <CSSTransition
+              nodeRef={overlayRef}
               key="overlay"
               classNames="Modal_overlay_transition"
               timeout={
@@ -86,6 +91,7 @@ const Modal: React.FC<IProps> = (props: IProps) => {
               unmountOnExit
             >
               <div
+                ref={overlayRef}
                 aria-hidden
                 className={`Modal_overlay${
                   overlayClassName ? ` ${overlayClassName}` : ''
@@ -101,6 +107,7 @@ const Modal: React.FC<IProps> = (props: IProps) => {
       <TransitionGroup component={null}>
         {isOpen && (
           <CSSTransition
+            nodeRef={modalRef}
             key="modal"
             classNames="Modal_transition"
             timeout={modalTransitionTimeout}
@@ -113,7 +120,7 @@ const Modal: React.FC<IProps> = (props: IProps) => {
             mountOnEnter
             unmountOnExit
           >
-            <div className="Modal">
+            <div className="Modal" ref={modalRef}>
               <div
                 className={`Modal_inner${className ? ` ${className}` : ''}`}
                 aria-modal="true"

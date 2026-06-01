@@ -12,7 +12,7 @@ export const browserRouter = () => {
       element: <Navigate replace to="/1" />,
     },
     {
-      path: '/:pageId',
+      path: '/:page',
       element: <Home />,
     },
   ]);

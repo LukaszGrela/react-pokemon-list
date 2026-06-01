@@ -17,6 +17,3 @@ export const browserRouter = () => {
     },
   ]);
 };
-//   <Route path="/index.html" element={<Navigate replace to="/1" />} />
-//   <Route path="/" element={<Navigate replace to="/1" />} />
-//   <Route path="/:page" element={<Home />} />

@@ -8,7 +8,7 @@ export interface IProps {
   pid: string;
 }
 
-const PokemonDetails: React.FC<IProps> = ({ pid }: IProps): JSX.Element => {
+const PokemonDetails: React.FC<IProps> = ({ pid }: IProps) => {
   // Using a query hook automatically fetches data and returns query values
   const { data: results, isLoading: loading } =
     useGetPokemonByNameOrIdQuery(pid);

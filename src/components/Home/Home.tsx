@@ -1,3 +1,4 @@
+import './style/index.scss';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PAGINATION } from '../../api';
@@ -7,9 +8,8 @@ import Modal from '../Modal/Modal';
 import Pagination from '../Pagination/Pagination';
 import PokemonDetailsModalContent from '../PokemonDetailsModalContent/PokemonDetailsModalContent';
 import PokemonList from '../PokemonList/PokemonList';
-import './style/index.scss';
 
-const Home: React.FC = (): JSX.Element => {
+const Home: React.FC = () => {
   const { page: paramPage } = useParams();
   const page = paramPage ? parseInt(paramPage, 10) : 1;
   const modalId = 'pokemon-details-modal';

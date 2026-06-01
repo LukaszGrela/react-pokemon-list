@@ -1,14 +1,14 @@
+import './style/index.scss';
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PAGINATION } from '../../api';
 import { useGetPokemonsListQuery } from '../../store/services/pokemons-list';
 import PaginationButton from './PaginationButton/PaginationButton';
-import './style/index.scss';
 
 export interface IProps {
   page?: number;
 }
-const Pagination: React.FC<IProps> = ({ page }: IProps): JSX.Element => {
+const Pagination: React.FC<IProps> = ({ page }: IProps) => {
   const pagination = PAGINATION(page);
   const { total } = useGetPokemonsListQuery(pagination, {
     selectFromResult: (data) => ({

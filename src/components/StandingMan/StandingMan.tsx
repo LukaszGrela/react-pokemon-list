@@ -1,13 +1,11 @@
-import React from 'react';
 import './style/index.scss';
-import { IProps } from './types';
+import React from 'react';
+import type { IProps } from './types';
 
 /**
  * Pitr - CC0 - Wikimedia Commons
  */
-const StandingMan: React.FC<IProps> = ({
-  viewBox = '0 0 165.175 500.846',
-}): JSX.Element => (
+const StandingMan: React.FC<IProps> = ({ viewBox = '0 0 165.175 500.846' }) => (
   <div className="StandingMan">
     <svg
       xmlns="http://www.w3.org/2000/svg"

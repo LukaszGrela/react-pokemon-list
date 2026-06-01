@@ -1,10 +1,9 @@
-import React, { ReactNode } from 'react';
+import './style/index.scss';
+import React, { type ReactNode } from 'react';
 import { parseIdFromUrl } from '../../api';
 import type { TNamedAPIResource } from '../../store/model/common';
 import PokemonListItem from '../PokemonListItem/PokemonListItem';
 import Spinner from '../Spinner/Spinner';
-
-import './style/index.scss';
 
 export interface IProps {
   results?: TNamedAPIResource[];
@@ -15,7 +14,7 @@ export interface IProps {
   handlePokemonSelect: (pid: string, name: string) => void;
 }
 
-const PokemonList: React.FC<IProps> = (props: IProps): JSX.Element => {
+const PokemonList: React.FC<IProps> = (props: IProps) => {
   const { results, interactive, loading, handlePokemonSelect } = props;
 
   return (

@@ -19,7 +19,7 @@ describe('utils', () => {
         y: number,
         width: number,
         height: number,
-        equals: Rect
+        equals: Rect,
       ];
 
       it('Test trim full transparent canvas', () => {
@@ -43,7 +43,7 @@ describe('utils', () => {
         }
 
         // set to not find any pixels to trim
-        const threshold = jest.fn((x, y, data) => {
+        const threshold = jest.fn((_x, _y, data) => {
           // return true to stop trimming (found first non-transparent pixel)
           return data[ERGBADataIndex.A] > 0;
         });
@@ -77,7 +77,7 @@ describe('utils', () => {
         }
 
         // set to not find any pixels to trim
-        const threshold = jest.fn((x, y, data) => {
+        const threshold = jest.fn((_x, _y, data) => {
           // return true to stop trimming (found first non-transparent pixel)
           return data[ERGBADataIndex.A] > 0;
         });

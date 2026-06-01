@@ -1,18 +1,15 @@
 import React from 'react';
-import { HistoryRouter as ConnectedRouter } from 'redux-first-history/rr6';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from '../Home/Home';
-import { history } from '../../store';
+import { RouterProvider } from 'react-router-dom';
+import { browserRouter } from './browserRouter';
 
-const AppRouter: React.FC = (): JSX.Element => {
+const AppRouter: React.FC = () => {
   return (
-    <ConnectedRouter history={history}>
-      <Routes>
-        <Route path="/index.html" element={<Navigate replace to="/1" />} />
-        <Route path="/" element={<Navigate replace to="/1" />} />
-        <Route path="/:page" element={<Home />} />
-      </Routes>
-    </ConnectedRouter>
+    <RouterProvider router={browserRouter()} />
+    // <Routes>
+    //   <Route path="/index.html" element={<Navigate replace to="/1" />} />
+    //   <Route path="/" element={<Navigate replace to="/1" />} />
+    //   <Route path="/:page" element={<Home />} />
+    // </Routes>
   );
 };
 

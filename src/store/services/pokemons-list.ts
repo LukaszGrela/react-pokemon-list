@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_GATEWAY, API_LIST_POKEMON, TPagination } from '../../api';
-import { IAPIResourceList } from '../model/pokemon-list';
+import { API_GATEWAY, API_LIST_POKEMON, type TPagination } from '../../api';
+import type { IAPIResourceList } from '../model/pokemon-list';
 
 export const pokemonsList = createApi({
   reducerPath: 'pokemonsList',

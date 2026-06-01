@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
 export interface IProps {
   disabled?: boolean;
@@ -8,7 +8,7 @@ const PaginationButton: React.FC<PropsWithChildren<IProps>> = ({
   disabled,
   children,
   onClick,
-}): JSX.Element => {
+}) => {
   return (
     <button
       className="PaginationButton"

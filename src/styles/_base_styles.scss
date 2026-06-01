@@ -1,4 +1,6 @@
-@import './base/css_reset';
+@use "base/mixins";
+
+@use './base/css_reset';
 
 /* stylelint-disable selector-max-id, declaration-no-important*/
 * {
@@ -24,7 +26,7 @@ li > button {
 
 // a11y helper
 .is-a11y {
-  @include visually-hide;
+  @include mixins.visually-hide;
 }
 
 /* stylelint-enable selector-max-id, declaration-no-important*/

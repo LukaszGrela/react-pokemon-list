@@ -10,11 +10,7 @@ export interface IProps {
   onClick: (pid: string) => void;
 }
 
-const PokemonListItem: React.FC<IProps> = ({
-  pid,
-  name,
-  onClick,
-}: IProps): JSX.Element => {
+const PokemonListItem: React.FC<IProps> = ({ pid, name, onClick }: IProps) => {
   return (
     <li className="PokemonListItem">
       <button

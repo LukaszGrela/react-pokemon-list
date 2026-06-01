@@ -1,4 +1,9 @@
-import { TNamedAPIResource, TPath, TResourceId, TResourceName } from './common';
+import type {
+  TNamedAPIResource,
+  TPath,
+  TResourceId,
+  TResourceName,
+} from './common';
 
 type TNamedIdResource = TResourceId & TResourceName;
 

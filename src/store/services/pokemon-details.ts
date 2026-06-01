@@ -1,7 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_GATEWAY, API_LIST_POKEMON } from '../../api';
-import { IPokemonDetail } from '../model/pokemon';
+import type { IPokemonDetail } from '../model/pokemon';
 
 // Define a service using a base URL and expected endpoints
 export const pokemonDetails = createApi({

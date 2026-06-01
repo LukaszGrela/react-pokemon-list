@@ -1,4 +1,4 @@
-import { TNamedAPIResource } from './common';
+import type { TNamedAPIResource } from './common';
 
 export interface IAPIResourceList {
   count: number;

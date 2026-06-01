@@ -1,4 +1,4 @@
 // Functions, mixins, variables
-@import './base/functions';
-@import './base/mixins';
-@import './base/variables';
+@use 'base/functions';
+@use 'base/mixins';
+@use 'base/variables';

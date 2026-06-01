@@ -1,3 +1,32 @@
-@import 'styles/exports';
+@use '@/styles/base/mixins';
+@use '@/styles/base/variables';
 
-@import './PokemonList';
+.PokemonList {
+  padding-top: variables.$header-height;
+  padding-bottom: variables.$footer-height;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &.interactive {
+    .PokemonListItem {
+      cursor: pointer;
+      &:hover {
+        position: relative;
+        .PokemonListItem_image {
+          position: relative;
+          top: -2px;
+          left: -2px;
+          @include mixins.png-shadow-2;
+        }
+      }
+    }
+  }
+
+  &_noData {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGetPokemonByNameOrIdQuery } from '../../store/services/pokemon-details';
 import { capitalise } from '../../utils/capitalise';
-import { IProps } from './types';
+import { type IProps } from './types';
 import InfiniteLoaderBar from '../InfiniteLoaderBar/InfiniteLoaderBar';
 import { API_GET_SPRITE_FRONT } from '../../api';
 import HeightCompare from '../HeightCompare/HeightCompare';
@@ -16,7 +16,7 @@ const PokemonDetailsModalContent: React.FC<IProps> = ({
   pid,
   name,
   closeModal,
-}): JSX.Element => {
+}) => {
   const [fallback, setUseFallback] = useState(false);
   const { data, error, isLoading } = useGetPokemonByNameOrIdQuery(pid);
 

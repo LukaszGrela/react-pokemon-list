@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style/index.scss';
 
-const Spinner: React.FC = (): JSX.Element => (
+const Spinner: React.FC = () => (
   <div className="Spinner">
     <svg
       version="1"

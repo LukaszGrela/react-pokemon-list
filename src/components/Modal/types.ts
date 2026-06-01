@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { ECloseModalEnum } from './enums';
 
 export type TCloseModalCallback = (reason: ECloseModalEnum) => void;

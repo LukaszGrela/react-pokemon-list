@@ -14,7 +14,7 @@ import { canUseDOM } from '../../utils/canUseDOM';
 
 import './style/index.scss';
 
-const Modal: React.FC<IProps> = (props: IProps): JSX.Element => {
+const Modal: React.FC<IProps> = (props: IProps) => {
   const {
     children,
     isOpen = false,

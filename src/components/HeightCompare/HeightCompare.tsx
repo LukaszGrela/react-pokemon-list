@@ -1,16 +1,15 @@
+import './style/index.scss';
 import React, { useState } from 'react';
 import SilhouetteImage from '../SilhouetteImage/SilhouetteImage';
 import StandingMan from '../StandingMan/StandingMan';
-import { IProps } from './types';
-
-import './style/index.scss';
+import type { IProps } from './types';
 
 const HeightCompare: React.FC<IProps> = ({
   src,
   baseHeight,
   height,
   title,
-}): JSX.Element | null => {
+}) => {
   const [error, setError] = useState(false);
   const manIsTaller = Math.max(baseHeight, height) === baseHeight;
   const heightMax = Math.max(baseHeight, height);

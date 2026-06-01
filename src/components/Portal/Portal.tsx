@@ -1,14 +1,10 @@
+import './style/index.scss';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { canUseDOM } from '../../utils/canUseDOM';
 import type { IProps } from './types';
 
-import './style/index.scss';
-
-const Portal: React.FC<IProps> = ({
-  children,
-  nodeId = 'default-portal',
-}: IProps): JSX.Element | null => {
+const Portal: React.FC<IProps> = ({ children, nodeId = 'default-portal' }) => {
   const node: Element | null = useMemo((): Element | null => {
     if (!canUseDOM) return null;
     let element = document.getElementById(nodeId);

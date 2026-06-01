@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IconCross: React.FC = (): JSX.Element => (
+const IconCross: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="#FFF"

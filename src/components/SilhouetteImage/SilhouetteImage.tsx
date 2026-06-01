@@ -1,18 +1,18 @@
-import React, { useEffect, useMemo, useRef } from 'react';
-import { rgbToChannels, TRGB } from '../../utils/colors';
+import './style/index.scss';
+import React, { useEffect, useRef } from 'react';
+import { rgbToChannels, type TRGB } from '../../utils/colors';
 import {
-  TRGBAData,
+  type TRGBAData,
   ERGBADataIndex,
   trim,
-  TThresholdFunction,
+  type TThresholdFunction,
 } from '../../utils/canvas-context';
 
-import './style/index.scss';
-import { IProps, TPathToPNG } from './types';
+import type { IProps, TPathToPNG } from './types';
 
 const alphaThreshold: TThresholdFunction = (
-  x: number,
-  y: number,
+  _x: number,
+  _y: number,
   data: TRGBAData
 ): boolean => {
   return data[ERGBADataIndex.A] > 0;
@@ -30,11 +30,13 @@ const useCanvas = ({
   color = Number.MIN_SAFE_INTEGER,
   thresholdColor = alphaThreshold,
   errorHandler,
-}: TUseCanvasParams): React.RefObject<HTMLCanvasElement> => {
+}: TUseCanvasParams): React.RefObject<HTMLCanvasElement | null> => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const img = useMemo(() => new global.Image(), []);
+  const img = useRef(new global.Image());
 
-  img.setAttribute('crossOrigin', 'anonymous');
+  useEffect(() => {
+    img.current.setAttribute('crossOrigin', 'anonymous');
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,12 +45,12 @@ const useCanvas = ({
       canvas.height = 96;
 
       const context = canvas.getContext('2d');
-      img.src = url;
+      img.current.src = url;
 
-      img.onload = function imageLoaded(): void {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context?.drawImage(img, 0, 0);
+      img.current.onload = function imageLoaded(): void {
+        canvas.width = img.current.width;
+        canvas.height = img.current.height;
+        context?.drawImage(img.current, 0, 0);
 
         if (crop && context) {
           const cropRect = trim(context, alphaThreshold);
@@ -59,11 +61,11 @@ const useCanvas = ({
             canvas.height = cropRect.height;
 
             // clear existing data
-            context.clearRect(0, 0, img.width, img.height);
+            context.clearRect(0, 0, img.current.width, img.current.height);
 
             // paint cropped image
             context.drawImage(
-              img,
+              img.current,
               cropRect.x,
               cropRect.y,
               cropRect.width,
@@ -109,7 +111,7 @@ const useCanvas = ({
         }
       };
       if (errorHandler) {
-        img.onerror = errorHandler;
+        img.current.onerror = errorHandler;
       }
     }
     return () => {};
@@ -118,11 +120,7 @@ const useCanvas = ({
   return canvasRef;
 };
 
-const SilhouetteImage: React.FC<IProps> = ({
-  src,
-  color,
-  onError,
-}: IProps): JSX.Element => {
+const SilhouetteImage: React.FC<IProps> = ({ src, color, onError }: IProps) => {
   const canvas2Ref = useCanvas({
     url: src,
     crop: true,

@@ -9,7 +9,7 @@ import PokemonDetailsModalContent from '../PokemonDetailsModalContent/PokemonDet
 import PokemonList from '../PokemonList/PokemonList';
 import './style/index.scss';
 
-const Home: React.FC = (): JSX.Element => {
+const Home: React.FC = () => {
   const { page: paramPage } = useParams();
   const page = paramPage ? parseInt(paramPage, 10) : 1;
   const modalId = 'pokemon-details-modal';

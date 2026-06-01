@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import store from '../../store';
 import AppRouter from './AppRouter';
 
-const App: React.FC = (): JSX.Element => {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <AppRouter />

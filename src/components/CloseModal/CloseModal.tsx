@@ -1,12 +1,9 @@
+import './style/index.scss';
 import React from 'react';
 import IconCross from '../icons/IconCross';
-import { IProps } from './types';
-import './style/index.scss';
+import { type IProps } from './types';
 
-const CloseModal: React.FC<IProps> = ({
-  onClick,
-  describedBy,
-}): JSX.Element => {
+const CloseModal: React.FC<IProps> = ({ onClick, describedBy }) => {
   return (
     <button
       type="button"

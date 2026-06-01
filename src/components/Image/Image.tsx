@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Spinner from '../Spinner/Spinner';
-import { IProps } from './types';
+import { type IProps } from './types';
 import './style/index.scss';
 
 const Image: React.FC<IProps> = ({
@@ -10,7 +10,7 @@ const Image: React.FC<IProps> = ({
   fallbackSrc,
   onError,
   onLoaded,
-}): JSX.Element => {
+}) => {
   const [loading, setLoading] = React.useState(false);
   const [hasErrors, setHasErrors] = React.useState(false);
   useEffect(() => {

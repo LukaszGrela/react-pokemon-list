@@ -1,4 +1,2 @@
-@import 'styles/exports';
-
-@import './Pagination.scss';
-@import './PaginationButton.scss';
+@use 'Pagination.scss';
+@use 'PaginationButton.scss';

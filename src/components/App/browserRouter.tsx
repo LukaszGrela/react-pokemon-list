@@ -1,0 +1,22 @@
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import Home from '../Home/Home';
+
+export const browserRouter = () => {
+  return createBrowserRouter([
+    {
+      path: '/',
+      element: <Navigate replace to="/1" />,
+    },
+    {
+      path: '/index.html',
+      element: <Navigate replace to="/1" />,
+    },
+    {
+      path: '/:pageId',
+      element: <Home />,
+    },
+  ]);
+};
+//   <Route path="/index.html" element={<Navigate replace to="/1" />} />
+//   <Route path="/" element={<Navigate replace to="/1" />} />
+//   <Route path="/:page" element={<Home />} />
